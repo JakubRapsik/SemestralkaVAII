@@ -1,0 +1,82 @@
+body {
+    margin: 0;
+}
+
+
+.grid-layout .Head {
+    grid-area: header;
+    text-align: center;
+
+}
+
+.grid-layout .Head2 {
+    grid-area: header2;
+    text-align: center;
+
+}
+
+.grid-layout .Head3 {
+    grid-area: header3;
+    text-align: center;
+
+}
+
+.grid-layout .Sidebar {
+    grid-area: sidebar;
+}
+
+.grid-layout .Search {
+    grid-area: search;
+}
+
+.grid-layout .Adds {
+    grid-area: add;
+    text-align: center;
+}
+
+.grid-layout .Text {
+    grid-area: text;
+}
+
+.grid-layout .Footer {
+    grid-area: footer;
+    text-align: center;
+}
+
+.grid-layout .Forum {
+    grid-area: forum;
+}
+
+.grid-layout > * {
+    border: 1px solid #d900ff;
+    padding: 5px;
+}
+
+.grid-layout.container {
+    display: grid;
+    height: 100vh;
+    gap: 24px;
+    grid-template-rows: auto auto auto 1fr auto auto;
+    grid-template-areas:
+            "bheader"
+            "search"
+            "forum"
+            "text"
+            "sidebar"
+            "add"
+            "footer";
+
+
+}
+
+.grid-layout.Header {
+    grid-area: bheader;
+    display: grid;
+    grid-template-rows: auto auto auto;
+    grid-column-gap: 2px;
+    grid-row-gap: 2px;
+    grid-template-areas:
+            "header"
+            "header2"
+            "header3";
+}
