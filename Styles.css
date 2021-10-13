@@ -1,66 +1,109 @@
 body {
     margin: 0;
+    background: rgb(27, 36, 40);
 }
 
-
-.grid-layout .Head {
+.Head {
+    background: #2E3A40;
+    border-radius: 3px;
     grid-area: header;
     text-align: center;
 
 }
 
-.grid-layout .Head2 {
+.Head2 {
+    background: #2E3A40;
+    border-radius: 3px;
     grid-area: header2;
     text-align: center;
 
 }
 
-.grid-layout .Head3 {
+.Head3 {
+    background: #2E3A40;
+    border-radius: 3px;
     grid-area: header3;
     text-align: center;
 
 }
 
-.grid-layout .Sidebar {
+.Head4 {
+    background: #2E3A40;
+    border-radius: 3px;
+    grid-area: header4;
+    text-align: center;
+}
+
+.Sidebar {
+    border-radius: 3px;
+    background: #2E3A40;
     grid-area: sidebar;
 }
 
-.grid-layout .Search {
+.Search {
+    border-radius: 3px;
+    background: #2E3A40;
     grid-area: search;
 }
 
-.grid-layout .Adds {
+.Adds {
+    border-radius: 3px;
+    background: #2E3A40;
     grid-area: add;
     text-align: center;
 }
 
-.grid-layout .Text {
+.NewForum {
+    border-radius: 3px;
+    background: #2E3A40;
     grid-area: text;
 }
 
-.grid-layout .Footer {
+.Footer {
+    border-radius: 3px;
+    background: #2E3A40;
     grid-area: footer;
     text-align: center;
 }
 
-.grid-layout .Forum {
+.Forum {
+    border-radius: 3px 3px 0 0;
+    background: #374C56;
     grid-area: forum;
 }
 
+.ForumCat {
+    border-radius: 0 0 3px 3px;
+    background: #2E3A40;
+    grid-area: forumcat;
+}
+
 .grid-layout > * {
-    border: 1px solid #d900ff;
     padding: 3px;
+    color: whitesmoke;
+}
+
+
+.grid-layout.ForumC {
+    grid-area: forumC;
+    display: grid;
+    grid-row-gap: -20px;
+    grid-template-rows: 35px auto;
+    grid-template-areas:
+        "forum"
+        "forumcat";
+
 }
 
 .grid-layout.container {
     display: grid;
     height: 100vh;
     gap: 24px;
-    grid-template-rows: auto auto 1fr 1fr auto auto auto;
+    grid-template-rows: auto auto 1fr 1fr auto auto;
     grid-template-areas:
             "bheader"
             "search"
-            "forum"
+            "forumC"
             "text"
             "sidebar"
             "add"
@@ -72,14 +115,16 @@ body {
 .grid-layout.Header {
     grid-area: bheader;
     display: grid;
-    grid-template-rows: auto auto auto;
+    grid-template-rows: auto auto auto auto;
     grid-column-gap: 2px;
     grid-row-gap: 2px;
     grid-template-areas:
             "header"
             "header2"
+            "header4"
             "header3";
 }
+
 
 @media (min-width: 720px) {
     .grid-layout.container {
@@ -90,8 +135,8 @@ body {
         grid-template-areas:
             "bheader bheader bheader"
             "search search search"
-            "forum forum sidebar"
-            "forum forum sidebar"
+            "forumC forumC sidebar"
+            "forumC forumC sidebar"
             "text text add"
             "text text add"
             "footer footer footer";
@@ -104,7 +149,7 @@ body {
         grid-column-gap: 2px;
         grid-row-gap: 2px;
         grid-template-areas:
-                "header header2 header3";
+                "header header2 header4 . . header3";
     }
 }
 
@@ -113,17 +158,34 @@ body {
         grid-template-rows: auto auto 1fr 1fr auto auto;
         grid-row-gap: 15px;
         grid-column-gap: 15px;
-        grid-template-columns:300px auto auto auto 300px;
+        grid-template-columns:150px auto auto auto 300px;
         grid-template-areas:
             "bheader bheader bheader bheader search"
-            ". forum forum forum sidebar"
-            ". forum forum forum sidebar"
+            ". forumC forumC forumC sidebar"
+            ". forumC forumC forumC sidebar"
             ". text text text add"
             ". text text text add"
             "footer footer footer footer footer";
     }
 }
 
+.Head:hover {
+    color: #CCCCCC;
+}
 
+.Head2:hover {
+    color: #CCCCCC;
+}
 
+.Head3:hover {
+    color: #CCCCCC;
+}
+
+.Head4:hover {
+    color: #CCCCCC;
+}
+
+.Search:hover {
+    color: #CCCCCC;
+}
 
