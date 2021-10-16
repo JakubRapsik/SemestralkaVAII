@@ -1,11 +1,15 @@
 body {
     margin: 0;
-    background: rgb(27, 36, 40);
+    background: #1B2428FF;
 }
 
 img {
+    max-width: 100%;
     width: auto;
     height: auto;
+    max-height: 100%;
+    border-radius: 3px;
+    box-sizing: border-box;
 }
 
 a {
@@ -13,89 +17,145 @@ a {
     text-decoration: none;
 }
 
-.Head {
+.home-grid-layout > * {
+    padding: 3px;
+    color: whitesmoke;
+}
+
+.design {
     background: #2E3A40;
     border-radius: 3px;
+    margin-top: 3px;
+    text-align: center;
+}
+
+.head {
     grid-area: header;
-    text-align: center;
 
 }
 
-.Head2 {
-    background: #2E3A40;
-    border-radius: 3px;
+.head2 {
     grid-area: header2;
-    text-align: center;
 
 }
 
-.Head3 {
-    background: #2E3A40;
-    border-radius: 3px;
+.head3 {
     grid-area: header3;
-    text-align: center;
 
 }
 
-.Head4 {
-    background: #2E3A40;
-    border-radius: 3px;
+.head4 {
     grid-area: header4;
-    text-align: center;
 }
 
-.Sidebar {
+.search {
     border-radius: 3px;
+    color: whitesmoke;
     background: #2E3A40;
-    grid-area: sidebar;
-}
-
-.Search {
-    border-radius: 3px;
-    background: #2E3A40;
+    margin-top: 0;
     grid-area: search;
 }
 
-.Adds {
+.search input[type=text] {
     border-radius: 3px;
     background: #2E3A40;
+    padding: 6px;
+    box-sizing: border-box;
+    margin: 0;
+    border: none;
+    font-size: 17px;
+    width: 100%;
+    color: whitesmoke;
+}
+
+.adds {
     grid-area: add;
-    text-align: center;
 }
 
-.NewForum {
-    border-radius: 3px;
-    background: #2E3A40;
-    grid-area: text;
-}
-
-.Footer {
-    border-radius: 3px;
-    background: #2E3A40;
+.footer {
     grid-area: footer;
-    text-align: center;
 }
 
-.Forum {
+.forumCategory {
     border-radius: 3px 3px 0 0;
     background: #374C56;
     grid-area: forum;
 }
 
-.ForumCat {
+.forumCatText {
     border-radius: 0 0 3px 3px;
     font-size: 2.2vh;
     background: #2E3A40;
     grid-area: forumcat;
 }
 
-.grid-layout > * {
-    padding: 3px;
-    color: whitesmoke;
+.activeTopics {
+    border-radius: 3px 3px 0 0;
+    background: #374C56;
+    grid-area: topics;
+}
+
+.activeTopicsText {
+    border-radius: 0 0 3px 3px;
+    font-size: 2.2vh;
+    background: #2E3A40;
+    grid-area: topictxt;
+}
+
+.sidebarContent {
+    text-align: center;
+    border-radius: 3px 3px 0 0;
+    background: #374C56;
+    grid-area: sidebarCon;
+}
+
+.sidebarContentText {
+    border-radius: 0 0 3px 3px;
+    font-size: 1vh;
+    background: #2E3A40;
+    grid-area: sidebarTxt;
+}
+
+.sidebarSettings {
+    margin-top: -3px;
+    margin-bottom: -3px;
+    text-align: center;
+    border-radius: 3px;
+    background: #374C56;
+    grid-area: sidebarSet;
+}
+
+.sidebarSettingsText {
+    border-radius: 0 0 3px 3px;
+    font-size: 1vh;
+    background: #2E3A40;
+    grid-area: sidebarSTxt;
 }
 
 
-.grid-layout.ForumC {
+.home-grid-layout.sidebarContainer {
+    grid-area: sidebarC;
+    display: grid;
+    grid-row-gap: -20px;
+    grid-template-rows: 35px auto 35px auto;
+    grid-template-areas:
+            "sidebarCon"
+            "sidebarTxt"
+            "sidebarSet"
+            "sidebarSTxt";
+}
+
+.home-grid-layout.topicContainer {
+    grid-area: topicC;
+    display: grid;
+    grid-row-gap: -20px;
+    grid-template-rows: 35px auto;
+    grid-template-areas:
+            "topics"
+            "topictxt";
+}
+
+.home-grid-layout.forumContainer {
     grid-area: forumC;
     display: grid;
     grid-row-gap: -20px;
@@ -106,24 +166,7 @@ a {
 
 }
 
-.grid-layout.container {
-    display: grid;
-    height: 100vh;
-    gap: 24px;
-    grid-template-rows: auto auto 1fr 1fr auto auto;
-    grid-template-areas:
-            "bheader"
-            "search"
-            "forumC"
-            "text"
-            "sidebar"
-            "add"
-            "footer";
-
-
-}
-
-.grid-layout.Header {
+.home-grid-layout.header {
     grid-area: bheader;
     display: grid;
     grid-template-rows: auto auto auto auto;
@@ -136,26 +179,51 @@ a {
             "header3";
 }
 
+.home-grid-layout.container {
+    display: grid;
+    height: 100vh;
+    gap: 1vh;
+    grid-template-rows: auto auto 1fr 1fr auto auto;
+    grid-template-areas:
+            "bheader"
+            "search"
+            "forumC"
+            "topicC"
+            "sidebarC"
+            "add"
+            "footer";
+}
 
 @media (min-width: 720px) {
-    .grid-layout.container {
+    .adds {
+        max-height: 50%;
+        max-width: 70%;
+        margin-right: 3%;
+    }
+
+    .sidebarContainer {
+        max-width: 70%;
+        margin-right: 3%;
+    }
+
+    .home-grid-layout.container {
         grid-template-rows: auto auto auto 1fr 1fr auto auto;
-        grid-template-columns: auto auto 200px;
-        grid-row-gap: 15px;
-        grid-column-gap: 15px;
+        grid-template-columns: auto auto 20%;
+        grid-row-gap: 2%;
+        grid-column-gap: 1.5%;
         grid-template-areas:
             "bheader bheader bheader"
             "search search search"
-            "forumC forumC sidebar"
-            "forumC forumC sidebar"
-            "text text add"
-            "text text add"
+            "forumC forumC sidebarC"
+            "forumC forumC sidebarC"
+            "topicC topicC add"
+            "topicC topicC add"
             "footer footer footer";
 
 
     }
 
-    .grid-layout.Header {
+    .home-grid-layout.header {
         border-radius: 3px;
         background: #2E3A40;
         grid-template-rows: auto auto auto;
@@ -167,38 +235,33 @@ a {
 }
 
 @media (min-width: 1020px) {
-    .grid-layout.container {
+    .adds {
+        max-width: 250px;
+        max-height: 250px;
+        margin-right: 3%;
+    }
+
+    .sidebarContainer {
+        max-width: 70%;
+        margin-right: 3%;
+    }
+
+    .home-grid-layout.container {
         grid-template-rows: auto auto 1fr 1fr auto auto auto;
-        grid-row-gap: 15px;
-        grid-column-gap: 15px;
-        grid-template-columns:150px auto auto auto 150px 300px;
+        grid-row-gap: 2%;
+        grid-column-gap: 0.2%;
+        grid-template-columns:10% auto auto auto 3% 20%;
         grid-template-areas:
             "bheader bheader bheader bheader bheader search"
-            ". forumC forumC forumC . sidebar"
-            ". forumC forumC forumC . sidebar"
-            ". text text text . add"
-            ". text text text . add"
+            ". forumC forumC forumC . sidebarC"
+            ". forumC forumC forumC . sidebarC"
+            ". topicC topicC topicC . add"
+            ". topicC topicC topicC . add"
             "footer footer footer footer footer footer";
     }
 }
 
-.Head:hover {
-    color: #CCCCCC;
-}
-
-.Head2:hover {
-    color: #CCCCCC;
-}
-
-.Head3:hover {
-    color: #CCCCCC;
-}
-
-.Head4:hover {
-    color: #CCCCCC;
-}
-
-.Search:hover {
+.head:hover, .head2:hover, .head3:hover, .head4:hover {
     color: #CCCCCC;
 }
 
