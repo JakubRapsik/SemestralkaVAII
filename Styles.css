@@ -124,13 +124,13 @@ a {
     grid-area: footer;
 }
 
-.forumCategory {
+.nameOfBox1 {
     border-radius: 3px 3px 0 0;
     background: #374C56;
     grid-area: forum;
 }
 
-.forumCatText {
+.box1Text {
     display: flex;
     flex-direction: column;
     border-radius: 0 0 3px 3px;
@@ -139,13 +139,13 @@ a {
     grid-area: forumcat;
 }
 
-.activeTopics {
+.nameOfBox2 {
     border-radius: 3px 3px 0 0;
     background: #374C56;
     grid-area: topics;
 }
 
-.activeTopicsText {
+.box2Text {
     border-radius: 0 0 3px 3px;
     font-size: 2.2vh;
     background: #2E3A40;
@@ -251,7 +251,7 @@ a {
             "footer";
 }
 
-@media (min-width: 720px) and (min-height: 720px) {
+@media (min-width: 720px) and (min-height: 600px) {
     .ads {
         max-height: 50%;
         max-width: 70%;
