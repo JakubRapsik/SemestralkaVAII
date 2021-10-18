@@ -193,7 +193,7 @@ a {
     grid-area: sidebarC;
     display: grid;
     grid-row-gap: -20px;
-    grid-template-rows: 35px auto 35px auto;
+    grid-template-rows: 35px 40% 35px 40%;
     grid-template-areas:
             "sidebarCon"
             "sidebarTxt"
@@ -240,7 +240,7 @@ a {
     display: grid;
     height: 100vh;
     gap: 1vh;
-    grid-template-rows: auto auto 1fr 1fr 45% auto;
+    grid-template-rows: auto auto 1fr 1fr 50% auto;
     grid-template-areas:
             "bheader"
             "search"
@@ -251,7 +251,7 @@ a {
             "footer";
 }
 
-@media (min-width: 720px) and (min-height: 600px) {
+@media (min-width: 750px) and (min-height: 700px) {
     .ads {
         max-height: 50%;
         max-width: 70%;
@@ -296,7 +296,7 @@ a {
     }
 }
 
-@media (min-width: 1020px) {
+@media (min-width: 1020px)  and (min-height: 700px) {
     .ads {
         background: none;
         max-width: 250px;
