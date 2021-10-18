@@ -21,25 +21,37 @@
 
     <!--Kontajner pre Register-->
     <div class="main-grid-layout box1Container" style="text-align: center;max-width: 60%;margin-left: 20%">
-        <div style="padding-top: 10px" class="nameOfBox1">Login</div>
+        <div style="padding-top: 10px" class="nameOfBox1">Registration</div>
         <div class="box1Text">
-            <div class="username">
+            <div class="fillWindows register">
                 <form action="#">
-                    <label>
-                        <input type="text" placeholder="Username" required minlength="6"
-                               maxlength="15">
-                    </label>
+                    <div>
+                        <label>
+                            <input type="text" placeholder="Username" required minlength="6"
+                                   maxlength="15">
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <input type="email" placeholder="Email Address" required minlength="6">
+                        </label>
+                    </div>
                     <div>
                         <label>
                             <input type="password" placeholder="Password" required minlength="6">
                         </label>
                     </div>
                     <div>
-                        <button type="submit">Login</button>
+                        <label>
+                            <input type="password" placeholder="Password Confirmation" required minlength="6">
+                        </label>
+                    </div>
+                    <div>
+                        <button type="submit">Register</button>
                     </div>
                     <div>
                         <label>
-                            <input type="checkbox" checked="checked" name="remember"> Remember me
+                            <input type="checkbox" checked="checked" name="remember"><a style="margin-left: 1%;" href="registration.html">Accepting terms and conditions</a>
                         </label>
                     </div>
                 </form>
@@ -50,7 +62,7 @@
     <!--Kontajner pre Login-->
     <div class="main-grid-layout box2Container" style="text-align: center;max-width: 60%;margin-left: 20%">
         <div class="nameOfBox2" style="padding-top: 10px"><a
-                href="registration.html"><span>No account? Create one here</span></a></div>
+                href="login.html"><span>already have an account? log in</span></a></div>
     </div>
 
     <!--SearchBar-->

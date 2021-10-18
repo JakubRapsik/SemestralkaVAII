@@ -332,7 +332,14 @@ a:hover {
     color: #CCCCCC;
 }
 
-.username {
+.fillWindows {
+    border-radius: 3px;
+    color: whitesmoke;
+    background: #2E3A40;
+    margin-top: 0;
+}
+
+.register {
     border-radius: 3px;
     color: whitesmoke;
     background: #2E3A40;
@@ -346,8 +353,8 @@ a:hover {
 button {
     background-color: #5d88a1;
     color: white;
-    padding: 15px;
-    margin: 5% 0;
+    padding: 10px;
+    margin: 3% 0 0 0;
     width: 30vh;
     border-radius: 3px;
     border: none;
@@ -359,9 +366,9 @@ button:hover {
     opacity: 0.8;
 }
 
-.username input[type=text], input[type=password] {
+.fillWindows input[type=text], input[type=password], input[type=email] {
     width: 30vh;
-    text-align: center;
+    text-align: left;
     border-radius: 3px;
     background: #374C56;
     padding: 15px;
@@ -370,4 +377,10 @@ button:hover {
     border: none;
     font-size: 20px;
     color: whitesmoke;
+}
+
+.fillWindows.register input {
+    margin: 2% 0 0;
+    padding: 10px;
+    font-size: 15px;
 }
