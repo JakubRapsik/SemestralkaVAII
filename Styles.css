@@ -251,11 +251,81 @@ a {
             "footer";
 }
 
+
+.head:hover, .head2:hover, .head3:hover, .head4:hover {
+    color: #CCCCCC;
+}
+
+a:hover {
+    color: #CCCCCC;
+}
+
+.fillWindows {
+    border-radius: 3px;
+    color: whitesmoke;
+    background: #2E3A40;
+    margin-top: 0;
+}
+
+.register {
+    border-radius: 3px;
+    color: whitesmoke;
+    background: #2E3A40;
+    margin-top: 0;
+}
+
+::placeholder {
+    color: whitesmoke;
+}
+
+button {
+    background-color: #5d88a1;
+    color: white;
+    padding: 10px;
+    margin: 3% 0 0 0;
+    width: 30vw;
+    border-radius: 3px;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+.fillWindows input[type=text], input[type=password], input[type=email] {
+    width: 55vw;
+    text-align: left;
+    border-radius: 3px;
+    background: #374C56;
+    padding: 15px;
+    box-sizing: border-box;
+    margin: 5% 0 0;
+    border: none;
+    font-size: 20px;
+    color: whitesmoke;
+}
+
+.fillWindows.register input {
+    margin: 2% 0 0;
+    padding: 10px;
+    font-size: 15px;
+}
+
 @media (min-width: 750px) and (min-height: 700px) {
     .ads {
         max-height: 50%;
         max-width: 70%;
         margin-right: 3%;
+    }
+
+    .fillWindows input[type=text], input[type=password], input[type=email] {
+        width: 30vh;
+    }
+
+    button {
+        width: 30vh;
     }
 
     .sidebarContainer {
@@ -322,65 +392,4 @@ a {
             ". topicC topicC topicC . add"
             "footer footer footer footer footer footer";
     }
-}
-
-.head:hover, .head2:hover, .head3:hover, .head4:hover {
-    color: #CCCCCC;
-}
-
-a:hover {
-    color: #CCCCCC;
-}
-
-.fillWindows {
-    border-radius: 3px;
-    color: whitesmoke;
-    background: #2E3A40;
-    margin-top: 0;
-}
-
-.register {
-    border-radius: 3px;
-    color: whitesmoke;
-    background: #2E3A40;
-    margin-top: 0;
-}
-
-::placeholder {
-    color: whitesmoke;
-}
-
-button {
-    background-color: #5d88a1;
-    color: white;
-    padding: 10px;
-    margin: 3% 0 0 0;
-    width: 30vh;
-    border-radius: 3px;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-}
-
-button:hover {
-    opacity: 0.8;
-}
-
-.fillWindows input[type=text], input[type=password], input[type=email] {
-    width: 30vh;
-    text-align: left;
-    border-radius: 3px;
-    background: #374C56;
-    padding: 15px;
-    box-sizing: border-box;
-    margin: 5% 0 0;
-    border: none;
-    font-size: 20px;
-    color: whitesmoke;
-}
-
-.fillWindows.register input {
-    margin: 2% 0 0;
-    padding: 10px;
-    font-size: 15px;
 }
