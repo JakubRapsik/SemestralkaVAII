@@ -192,7 +192,7 @@ a {
 .main-grid-layout.sidebarContainer {
     grid-area: sidebarC;
     display: grid;
-    grid-row-gap: -20px;
+    grid-row-gap: 0;
     grid-template-rows: 35px 40% 35px 40%;
     grid-template-areas:
             "sidebarCon"
@@ -204,7 +204,7 @@ a {
 .main-grid-layout.box2Container {
     grid-area: topicC;
     display: grid;
-    grid-row-gap: -20px;
+    grid-row-gap: 0;
     grid-template-rows: 35px auto;
     grid-template-areas:
             "topics"
@@ -214,7 +214,7 @@ a {
 .main-grid-layout.box1Container {
     grid-area: forumC;
     display: grid;
-    grid-row-gap: -20px;
+    grid-row-gap: 0;
     grid-template-rows: 35px auto;
     grid-template-areas:
         "forum"
