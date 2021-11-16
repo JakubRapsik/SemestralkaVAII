@@ -5,18 +5,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Menu</title>
+    <title>Contact</title>
 </head>
 <body>
 <div class="main-grid-layout container">
 
     <!--Kontajner pre Header-->
     <div class="main-grid-layout header">
-        <a href="homePage.html" class="design head">Home</a>
-        <a href="menu.html" class="design head2">Menu</a>
-        <a href="login.html" class="design head3">Login</a>
-        <a href="registration.html" class="design head5">Registration</a>
-        <a href="contact.html" class="design head4">Contact</a>
+        <a href="homePage.php" class="design head">Home</a>
+        <a href="menu.php" class="design head2">Menu</a>
+        <a href="login.php" class="design head3">Login</a>
+        <a href="registration.php" class="design head5">Registration</a>
+        <a href="contact.php" class="design head4">Contact</a>
     </div>
 
     <!--SearchBar-->
@@ -30,7 +30,7 @@
         </form>
     </div>
 
-</div>
 
+</div>
 </body>
 </html>

@@ -12,11 +12,11 @@
 
     <!--Kontajner pre Header-->
     <div class="main-grid-layout header">
-        <a href="homePage.html" class="design head">Home</a>
-        <a href="menu.html" class="design head2">Menu</a>
-        <a href="login.html" class="design head3">Login</a>
-        <a href="registration.html" class="design head5">Registration</a>
-        <a href="contact.html" class="design head4">Contact</a>
+        <a href="homePage.php" class="design head">Home</a>
+        <a href="menu.php" class="design head2">Menu</a>
+        <a href="login.php" class="design head3">Login</a>
+        <a href="registration.php" class="design head5">Registration</a>
+        <a href="contact.php" class="design head4">Contact</a>
     </div>
 
     <!--Kontajner pre Login-->
@@ -52,7 +52,7 @@
     <!--Kontajner pre Register-->
     <div class="main-grid-layout box2Container" style="text-align: center;max-width: 60%;margin-left: 20%">
         <div class="nameOfBox2" style="padding-top: 10px"><a
-                href="registration.html"><span>No account? Create one here</span></a></div>
+                href="registration.php"><span>No account? Create one here</span></a></div>
     </div>
 
     <!--SearchBar-->
@@ -72,16 +72,16 @@
         <div class="sidebarContentText">
             <div>
                 <div class="sidebarContentTextStyle">
-                    <a href="homePage.html">Profile</a>
+                    <a href="homePage.php">Profile</a>
                 </div>
                 <div class="sidebarContentTextStyle">
-                    <a href="homePage.html">Friends</a>
+                    <a href="homePage.php">Friends</a>
                 </div>
                 <div class="sidebarContentTextStyle">
-                    <a href="homePage.html">Massages</a>
+                    <a href="homePage.php">Massages</a>
                 </div>
                 <div style="text-align: center;margin-top: 1vh;margin-bottom: -15vh">
-                    <a href="homePage.html">Your Posts</a>
+                    <a href="homePage.php">Your Posts</a>
                 </div>
             </div>
         </div>
@@ -90,13 +90,13 @@
             <div class="sidebarContentText">
                 <div>
                     <div class="sidebarContentTextStyle">
-                        <a href="homePage.html">User Settings</a>
+                        <a href="homePage.php">User Settings</a>
                     </div>
                     <div class="sidebarContentTextStyle">
-                        <a href="homePage.html">Help Center</a>
+                        <a href="homePage.php">Help Center</a>
                     </div>
                     <div style="text-align: center;margin-top: 1vh;margin-bottom: -15vh">
-                        <a href="homePage.html">Sign Out</a>
+                        <a href="homePage.php">Sign Out</a>
                     </div>
                 </div>
             </div>
@@ -105,7 +105,7 @@
 
     <!--Reklamy-->
     <div class="design ads">
-        <a href="homePage.html"><img src="Resources/ads.jpg" alt=""></a>
+        <a href="homePage.php"><img src="Resources/ads.jpg" alt=""></a>
     </div>
     <div class="design footer">Footer</div>
 
