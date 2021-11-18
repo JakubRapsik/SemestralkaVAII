@@ -10,14 +10,8 @@
 <body>
 <div class="main-grid-layout container">
 
-    <!--Kontajner pre Header-->
-    <div class="main-grid-layout header">
-        <a href="homePage.php" class="design head">Home</a>
-        <a href="menu.php" class="design head2">Menu</a>
-        <a href="login.php" class="design head3">Login</a>
-        <a href="registration.php" class="design head5">Registration</a>
-        <a href="contact.php" class="design head4">Contact</a>
-    </div>
+    <!--Kontajner pre Header a SearchBar-->
+    <?php include "mainMenu.php"; ?>
 
     <!--Kontajner pre Login-->
     <div class="main-grid-layout box1Container" style="text-align: center;max-width: 60%;margin-left: 20%">
@@ -53,17 +47,6 @@
     <div class="main-grid-layout box2Container" style="text-align: center;max-width: 60%;margin-left: 20%">
         <div class="nameOfBox2" style="padding-top: 10px"><a
                 href="registration.php"><span>No account? Create one here</span></a></div>
-    </div>
-
-    <!--SearchBar-->
-    <div class="design search">
-        <form action="#">
-            <label>
-                <input type="text"
-                       placeholder=" Search.."
-                       name="search">
-            </label>
-        </form>
     </div>
 
     <!--Kontajner pre Sidebar-->

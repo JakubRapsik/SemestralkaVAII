@@ -6,9 +6,7 @@ services:
      - MYSQL_ROOT_PASSWORD=password
      - MYSQL_DATABASE=myDB
   webserver:
-    image: mandaliya/php8-apache
-#    image: sikessem/php8-apache
-
+#    image: mitlabs/apache-php8.0
     ports:
       - "80:80"
     depends_on:

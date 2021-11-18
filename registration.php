@@ -1,8 +1,10 @@
 <?php
 
+global $error;
+global $insertQuery;
+
 require_once "config.php";
 require_once "newSession.php";
-global $error;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     $fullname = trim($_POST['name']);
@@ -10,42 +12,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     $password = trim($_POST['password']);
     $confirm_password = trim($_POST["confirm_password"]);
     $password_hash = password_hash($password, PASSWORD_BCRYPT);
-    if($query = $db->prepare("SELECT * FROM Users WHERE email = ?")) {
-        $error = '';
-        // Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
- $query->bind_param('s', $email);
- $query->execute();
- // Store the result so we can check if the account exists in the database.
- $query->store_result();
- if ($query->num_rows > 0) {
-     $error .= '<p class="error">The email address is already registered!</p>';
- } else {
-     // Validate password
-     if (strlen($password ) < 6) {
-         $error .= '<p class="error">Password must have atleast 6 characters.</p>';
-     }
-     // Validate confirm password
-     if (empty($confirm_password)) {
-         $error .= '<p class="error">Please enter confirm password.</p>';
-     } else {
-         if (empty($error) && ($password != $confirm_password)) {
-             $error .= '<p class="error">Password did not match.</p>';
-         }
-     }
-     if (empty($error) ) {
-         $insertQuery = $db->prepare("INSERT INTO Users (name, password, email) VALUES (?, ?, ?);");
-         $insertQuery->bind_param("sss", $fullname, $email, $password_hash);
-         $result = $insertQuery->execute();
-         if ($result) {
-             $error .= '<p class="success">Your registration was successful!</p>';
-         } else {
-             $error .= '<p class="error">Something went wrong!</p>';
-         }
-     }
- }
- }
+    if ($query = $db->prepare("SELECT * FROM Users WHERE email = ?")) {
+        $query->bind_param('s', $email);
+        $query->execute();
+        $query->store_result();
+        if ($query->num_rows > 0) {
+            $error .= '<p>The email address is already registered!</p>';
+        } else {
+            if (strlen($password) < 6) {
+                $error .= '<p>Password must have atleast 6 characters.</p>';
+            }
+            if (empty($confirm_password)) {
+                $error .= '<p>Please enter confirm password.</p>';
+            } else {
+                if (empty($error) && ($password != $confirm_password)) {
+                    $error .= '<p>Password did not match.</p>';
+                }
+            }
+            if (empty($error)) {
+                $insertQuery = $db->prepare("INSERT INTO Users (meno, heslo, email) VALUES (?, ?, ?);");
+                $insertQuery->bind_param("sss", $fullname, $password_hash, $email);
+                $result = $insertQuery->execute();
+                if ($result) {
+                    $error .= '<p>Your registration was successful!</p>';
+                    $_SESSION['userid'] = $fullname;
+                } else {
+                    $error .= '<p>Something went wrong!</p>';
+                }
+            }
+        }
+    }
     $query->close();
-    $insertQuery->close();
     // Close DB connection
     mysqli_close($db);
 }
@@ -63,14 +60,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
 <body>
 <div class="main-grid-layout container">
 
-    <!--Kontajner pre Header-->
-    <div class="main-grid-layout header">
-        <a href="homePage.php" class="design head">Home</a>
-        <a href="menu.php" class="design head2">Menu</a>
-        <a href="login.php" class="design head3">Login</a>
-        <a href="registration.php" class="design head5">Registration</a>
-        <a href="contact.php" class="design head4">Contact</a>
-    </div>
+    <!--Kontajner pre Header a SearchBar-->
+    <?php include "mainMenu.php"; ?>
 
     <!--Kontajner pre Register-->
     <div class="main-grid-layout box1Container" style="text-align: center;max-width: 70%;margin-left: 15%">
@@ -105,9 +96,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                     </div>
                     <div>
                         <label>
-                            <input type="checkbox" checked="checked" name="remember"><a style="margin-left: 1%;"
-                                                                                        href="registration.php">Accepting
-                            terms and conditions</a>
+                            <input type="checkbox" checked="checked" name="remember" required><a
+                                    style="margin-left: 1%;"
+                                    href="registration.php">Accepting
+                                terms and conditions</a>
                         </label>
                     </div>
                 </form>
@@ -118,18 +110,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     <!--Kontajner pre Login-->
     <div class="main-grid-layout box2Container" style="text-align: center;max-width: 70%;margin-left: 15%">
         <div class="nameOfBox2" style="padding-top: 10px"><a
-                href="login.php"><span>already have an account? log in</span></a></div>
-    </div>
-
-    <!--SearchBar-->
-    <div class="design search">
-        <form action="#">
-            <label>
-                <input type="text"
-                       placeholder=" Search.."
-                       name="search">
-            </label>
-        </form>
+                    href="login.php"><span>already have an account? log in</span></a></div>
     </div>
 
     <!--Kontajner pre Sidebar-->

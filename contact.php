@@ -10,26 +10,8 @@
 <body>
 <div class="main-grid-layout container">
 
-    <!--Kontajner pre Header-->
-    <div class="main-grid-layout header">
-        <a href="homePage.php" class="design head">Home</a>
-        <a href="menu.php" class="design head2">Menu</a>
-        <a href="login.php" class="design head3">Login</a>
-        <a href="registration.php" class="design head5">Registration</a>
-        <a href="contact.php" class="design head4">Contact</a>
-    </div>
-
-    <!--SearchBar-->
-    <div class="design search">
-        <form action="#">
-            <label>
-                <input type="text"
-                       placeholder=" Search.."
-                       name="search">
-            </label>
-        </form>
-    </div>
-
+    <!--Kontajner pre Header a SearchBar-->
+    <?php include "mainMenu.php"; ?>
 
 </div>
 </body>

@@ -1,8 +1,5 @@
 <?php
-$servername = "semestralka-webserver-DB-1";
-$username = "root";
-$password = "password";
-$dbname = "myDB";
+
 global $error;
 global $insertQuery;
 
@@ -15,41 +12,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     $password = trim($_POST['password']);
     $confirm_password = trim($_POST["confirm_password"]);
     $password_hash = password_hash($password, PASSWORD_BCRYPT);
-    if($query = $db->prepare("SELECT * FROM Users WHERE email = ?")) {
-        $error = '';
-        // Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use"s"
- $query->bind_param('s', $email);
- $query->execute();
- // Store the result so we can check if the account exists in the database.
- $query->store_result();
- if ($query->num_rows > 0) {
-     $error .= '<p class="error">The email address is already registered!</p>';
- } else {
-     // Validate password
-     if (strlen($password ) < 6) {
-         $error .= '<p class="error">Password must have atleast 6 characters.</p>';
-     }
-     // Validate confirm password
-     if (empty($confirm_password)) {
-         $error .= '<p class="error">Please enter confirm password.</p>';
-     } else {
-         if (empty($error) && ($password != $confirm_password)) {
-             $error .= '<p class="error">Password did not match.</p>';
-         }
-     }
-     if (empty($error) ) {
-         $insertQuery = $db->prepare("INSERT INTO Users (meno, heslo,email) VALUES (?, ?, ?);");
-         $insertQuery->bind_param("sss", $fullname,$password_hash ,$email);
-         $result = $insertQuery->execute();
-         if ($result) {
-             $error .= '<p class="success">Your registration was successful!</p>';
-             $_SESSION['userid'] = $fullname;
-         } else {
-             $error .= '<p class="error">Something went wrong!</p>';
-         }
-     }
- }
- }
+    if ($query = $db->prepare("SELECT * FROM Users WHERE email = ?")) {
+        $query->bind_param('s', $email);
+        $query->execute();
+        // Store the result so we can check if the account exists in the database.
+        $query->store_result();
+        if ($query->num_rows > 0) {
+            $error .= '<p class="error">The email address is already registered!</p>';
+        } else {
+            // Validate password
+            if (strlen($password) < 6) {
+                $error .= '<p class="error">Password must have atleast 6 characters.</p>';
+            }
+            // Validate confirm password
+            if (empty($confirm_password)) {
+                $error .= '<p class="error">Please enter confirm password.</p>';
+            } else {
+                if (empty($error) && ($password != $confirm_password)) {
+                    $error .= '<p class="error">Password did not match.</p>';
+                }
+            }
+            if (empty($error)) {
+                $insertQuery = $db->prepare("INSERT INTO Users (meno, heslo,email) VALUES (?, ?, ?);");
+                $insertQuery->bind_param("sss", $fullname, $password_hash, $email);
+                $result = $insertQuery->execute();
+                if ($result) {
+                    $error .= '<p class="success">Your registration was successful!</p>';
+                    $_SESSION['userid'] = $fullname;
+                } else {
+                    $error .= '<p class="error">Something went wrong!</p>';
+                }
+            }
+        }
+    }
     $query->close();
     // Close DB connection
     mysqli_close($db);
@@ -80,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                 <div class="form-group">
                     <label>Email Address</label>
                     <label>
-                        <input type="email" name="email" class="form-control" required />
+                        <input type="email" name="email" class="form-control" required/>
                     </label>
                 </div>
                 <div class="form-group">

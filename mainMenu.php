@@ -4,8 +4,9 @@
     <a href="homePage.php" class="design head">Home</a>
     <a href="menu.php" class="design head2">Menu</a>
     <?php
+    $user = $_SESSION['userid'];
     if (isset($_SESSION['userid'])) {
-        echo '<a href="login.php" class="design head3"></a>';
+        echo '<a href="login.php" class="design head3">'.$user.'</a>';
     } else {
         echo '<a href="login.php" class="design head3">Login</a>';
         echo '<a href="registration.php" class="design head5">Registration</a>';
