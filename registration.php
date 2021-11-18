@@ -1,3 +1,56 @@
+<?php
+
+require_once "config.php";
+require_once "newSession.php";
+global $error;
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
+    $fullname = trim($_POST['name']);
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
+    $confirm_password = trim($_POST["confirm_password"]);
+    $password_hash = password_hash($password, PASSWORD_BCRYPT);
+    if($query = $db->prepare("SELECT * FROM Users WHERE email = ?")) {
+        $error = '';
+        // Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
+ $query->bind_param('s', $email);
+ $query->execute();
+ // Store the result so we can check if the account exists in the database.
+ $query->store_result();
+ if ($query->num_rows > 0) {
+     $error .= '<p class="error">The email address is already registered!</p>';
+ } else {
+     // Validate password
+     if (strlen($password ) < 6) {
+         $error .= '<p class="error">Password must have atleast 6 characters.</p>';
+     }
+     // Validate confirm password
+     if (empty($confirm_password)) {
+         $error .= '<p class="error">Please enter confirm password.</p>';
+     } else {
+         if (empty($error) && ($password != $confirm_password)) {
+             $error .= '<p class="error">Password did not match.</p>';
+         }
+     }
+     if (empty($error) ) {
+         $insertQuery = $db->prepare("INSERT INTO Users (name, password, email) VALUES (?, ?, ?);");
+         $insertQuery->bind_param("sss", $fullname, $email, $password_hash);
+         $result = $insertQuery->execute();
+         if ($result) {
+             $error .= '<p class="success">Your registration was successful!</p>';
+         } else {
+             $error .= '<p class="error">Something went wrong!</p>';
+         }
+     }
+ }
+ }
+    $query->close();
+    $insertQuery->close();
+    // Close DB connection
+    mysqli_close($db);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,32 +75,33 @@
     <!--Kontajner pre Register-->
     <div class="main-grid-layout box1Container" style="text-align: center;max-width: 70%;margin-left: 15%">
         <div style="padding-top: 10px" class="nameOfBox1">Registration</div>
+        <?php echo $error; ?>
         <div class="box1Text">
             <div class="fillWindows register">
-                <form action="#">
+                <form action="" method="post">
                     <div>
                         <label>
-                            <input type="text" placeholder="Username" required minlength="6"
+                            <input type="text" name="name" placeholder="Username" required minlength="6"
                                    maxlength="15">
                         </label>
                     </div>
                     <div>
                         <label>
-                            <input type="email" placeholder="Email Address" required minlength="6">
+                            <input type="email" name="email" placeholder="Email Address" required minlength="6">
                         </label>
                     </div>
                     <div>
                         <label>
-                            <input type="password" placeholder="Password" required minlength="6">
+                            <input type="password" name="password" placeholder="Password" required>
                         </label>
                     </div>
                     <div>
                         <label>
-                            <input type="password" placeholder="Password Confirmation" required minlength="6">
+                            <input type="password" name="confirm_password" placeholder="Password Confirmation" required>
                         </label>
                     </div>
                     <div>
-                        <button type="submit">Register</button>
+                        <button type="submit" name="submit" value="Submit">Register</button>
                     </div>
                     <div>
                         <label>

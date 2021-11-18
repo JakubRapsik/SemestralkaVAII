@@ -10,25 +10,8 @@
 <body>
 <div class="main-grid-layout container">
 
-    <!--Kontajner pre Header-->
-    <div class="main-grid-layout header">
-        <a href="homePage.php" class="design head">Home</a>
-        <a href="menu.php" class="design head2">Menu</a>
-        <a href="login.php" class="design head3">Login</a>
-        <a href="registration.php" class="design head5">Registration</a>
-        <a href="contact.php" class="design head4">Contact</a>
-    </div>
-
-    <!--SearchBar-->
-    <div class="design search">
-        <form action="#">
-            <label>
-                <input type="text"
-                       placeholder=" Search.."
-                       name="search">
-            </label>
-        </form>
-    </div>
+    <!--Kontajner pre Header a SearchBar-->
+    <?php include "mainMenu.php"; ?>
 
     <!--Kontajner pre Fav.Categorie-->
     <div class="main-grid-layout box1Container">
@@ -40,7 +23,7 @@
                         <a href="https://google.sk"><i class="fa fa-comment-o" aria-hidden="true"
                                                        style="color: lightgray;margin-right: 3px">
 
-                        </i>Announcements</a>
+                            </i>Announcements</a>
                         <div class="subCategoryTxt">Announcements about stuff...</div>
                     </div>
                     <div class="forumCount">
@@ -59,7 +42,7 @@
                         <a href="https://google.sk"><i class="fa fa-comment-o" aria-hidden="true"
                                                        style="color: lightgray;margin-right: 3px">
 
-                        </i>Questions</a>
+                            </i>Questions</a>
                         <div class="subCategoryTxt">Answers to frequent questions</div>
                     </div>
                     <div class="forumCount">
@@ -154,41 +137,7 @@
 
 
     <!--Kontajner pre Sidebar-->
-    <div class="main-grid-layout sidebarContainer">
-        <div style="padding-top: 10px" class="sidebarContent">Content</div>
-        <div class="sidebarContentText">
-            <div>
-                <div class="sidebarContentTextStyle">
-                    <a href="homePage.php">Profile</a>
-                </div>
-                <div class="sidebarContentTextStyle">
-                    <a href="homePage.php">Friends</a>
-                </div>
-                <div class="sidebarContentTextStyle">
-                    <a href="homePage.php">Massages</a>
-                </div>
-                <div style="text-align: center;margin-top: 1vh;margin-bottom: -15vh">
-                    <a href="homePage.php">Your Posts</a>
-                </div>
-            </div>
-        </div>
-        <div style="padding-top: 10px" class="sidebarSettings">Settings</div>
-        <div class="sidebarSettingsText">
-            <div class="sidebarContentText">
-                <div>
-                    <div class="sidebarContentTextStyle">
-                        <a href="homePage.php">User Settings</a>
-                    </div>
-                    <div class="sidebarContentTextStyle">
-                        <a href="homePage.php">Help Center</a>
-                    </div>
-                    <div style="text-align: center;margin-top: 1vh;margin-bottom: -15vh">
-                        <a href="homePage.php">Sign Out</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <?php include "sidebar.php"; ?>
 
     <!--Reklamy-->
     <div class="design ads">

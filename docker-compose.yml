@@ -6,7 +6,9 @@ services:
      - MYSQL_ROOT_PASSWORD=password
      - MYSQL_DATABASE=myDB
   webserver:
-    image: phpstorm/php-71-apache-xdebug
+    image: mandaliya/php8-apache
+#    image: sikessem/php8-apache
+
     ports:
       - "80:80"
     depends_on:
@@ -14,4 +16,4 @@ services:
     volumes:
       - ./:/var/www/html
     environment:
-      XDEBUG_CONFIG: remote_host=host.docker.internal
+      XDEBUG_CONFIG: remote_host=host.docker.internaltouch
