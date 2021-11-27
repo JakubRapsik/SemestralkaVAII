@@ -1,22 +1,28 @@
 <?php
 
 global $error;
-global $insertQuery;
+global $vlozenieDB;
 
 require_once "config.php";
-require_once "newSession.php";
+//require_once "newSession.php";
+session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
-    $fullname = trim($_POST['name']);
+    $name = trim($_POST['name']);
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
     $confirm_password = trim($_POST["confirm_password"]);
     $password_hash = password_hash($password, PASSWORD_BCRYPT);
-    if ($query = $db->prepare("SELECT * FROM Users WHERE email = ?")) {
-        $query->bind_param('s', $email);
-        $query->execute();
-        $query->store_result();
-        if ($query->num_rows > 0) {
+
+    if (empty($name)) {
+        $error .= '<p>Please enter name.</p>';
+    }
+
+    if ($poziadavka = $db->prepare("SELECT * FROM Users WHERE email = ?")) {
+        $poziadavka->bind_param('s', $email);
+        $poziadavka->execute();
+        $poziadavka->store_result();
+        if ($poziadavka->num_rows > 0) {
             $error .= '<p>The email address is already registered!</p>';
         } else {
             if (strlen($password) < 6) {
@@ -30,19 +36,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                 }
             }
             if (empty($error)) {
-                $insertQuery = $db->prepare("INSERT INTO Users (meno, heslo, email) VALUES (?, ?, ?);");
-                $insertQuery->bind_param("sss", $fullname, $password_hash, $email);
-                $result = $insertQuery->execute();
-                if ($result) {
+                $vlozenieDB = $db->prepare("INSERT INTO Users (meno, heslo, email) VALUES (?, ?, ?);");
+                $vlozenieDB->bind_param("sss", $name, $password_hash, $email);
+                $vysledok = $vlozenieDB->execute();
+                if ($vysledok) {
                     $error .= '<p>Your registration was successful!</p>';
-                    $_SESSION['userid'] = $fullname;
+                    $_SESSION['username'] = $name;
+                    header("location: homePage.php");
                 } else {
                     $error .= '<p>Something went wrong!</p>';
                 }
             }
         }
     }
-    $query->close();
+    $poziadavka->close();
     // Close DB connection
     mysqli_close($db);
 }
@@ -114,41 +121,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     </div>
 
     <!--Kontajner pre Sidebar-->
-    <div class="main-grid-layout sidebarContainer">
-        <div style="padding-top: 10px" class="sidebarContent">Content</div>
-        <div class="sidebarContentText">
-            <div>
-                <div class="sidebarContentTextStyle">
-                    <a href="homePage.php">Profile</a>
-                </div>
-                <div class="sidebarContentTextStyle">
-                    <a href="homePage.php">Friends</a>
-                </div>
-                <div class="sidebarContentTextStyle">
-                    <a href="homePage.php">Massages</a>
-                </div>
-                <div style="text-align: center;margin-top: 1vh;margin-bottom: -15vh">
-                    <a href="homePage.php">Your Posts</a>
-                </div>
-            </div>
-        </div>
-        <div style="padding-top: 10px" class="sidebarSettings">Settings</div>
-        <div class="sidebarSettingsText">
-            <div class="sidebarContentText">
-                <div>
-                    <div class="sidebarContentTextStyle">
-                        <a href="homePage.php">User Settings</a>
-                    </div>
-                    <div class="sidebarContentTextStyle">
-                        <a href="homePage.php">Help Center</a>
-                    </div>
-                    <div style="text-align: center;margin-top: 1vh;margin-bottom: -15vh">
-                        <a href="homePage.php">Sign Out</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <?php include "sidebar.php"; ?>
 
     <!--Reklamy-->
     <div class="design ads">

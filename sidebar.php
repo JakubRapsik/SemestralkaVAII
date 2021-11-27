@@ -23,7 +23,7 @@
             <div class="sidebarContentText">
                 <div>
                     <div class="sidebarContentTextStyle">
-                        <a href="homePage.php">User Settings</a>
+                        <a href="userSettings.php">User Settings</a>
                     </div>
                     <div class="sidebarContentTextStyle">
                         <a href="homePage.php">Help Center</a>

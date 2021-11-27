@@ -1,3 +1,50 @@
+<?php
+global $error;
+
+require_once "config.php";
+//require_once "newSession.php";
+session_start();
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
+
+    if (empty($email)) {
+        $error .= '<p>Please enter email.</p>';
+    }
+
+    if (empty($password)) {
+        $error .= '<p>Please enter your password.</p>';
+    }
+
+    if (empty($error)) {
+        if ($poziadavka = $db->prepare("SELECT meno , heslo FROM Users WHERE email = ?")) {
+            $poziadavka->bind_param('s', $email);
+            $poziadavka->execute();
+            $poziadavka->store_result();
+            $poziadavka->bind_result($meno, $hash);
+            $poziadavka->fetch();
+            if ($poziadavka->num_rows > 0) {
+                if (password_verify($password, $hash)) {
+                    $_SESSION["username"] = $meno;
+                    $_SESSION["usermail"] = $email;
+                    // Redirect the user to welcome page
+                    header("location: homePage.php");
+                    exit;
+                } else {
+                    $error .= '<p>The password is not valid.</p>';
+                }
+            } else {
+                $error .= '<p>No User exist with that email address.</p>';
+            }
+        }
+        $poziadavka->close();
+    }
+}
+mysqli_close($db);
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,22 +63,22 @@
     <!--Kontajner pre Login-->
     <div class="main-grid-layout box1Container" style="text-align: center;max-width: 60%;margin-left: 20%">
         <div style="padding-top: 10px" class="nameOfBox1">Login</div>
+        <?php echo $error; ?>
         <div class="box1Text">
             <div class="fillWindows">
-                <form action="#">
+                <form action="" method="post">
                     <div class="fillWindows">
                         <label>
-                            <input type="text" placeholder="Username" required minlength="6"
-                                   maxlength="15">
+                            <input type="email" name="email" placeholder="Email" required>
                         </label>
                     </div>
                     <div class="fillWindows">
                         <label>
-                            <input type="password" placeholder="Password" required minlength="6">
+                            <input type="password" name="password" placeholder="Password" required>
                         </label>
                     </div>
                     <div>
-                        <button type="submit">Login</button>
+                        <button type="submit" name="submit" value="Submit">Login</button>
                     </div>
                     <div>
                         <label>
@@ -46,45 +93,11 @@
     <!--Kontajner pre Register-->
     <div class="main-grid-layout box2Container" style="text-align: center;max-width: 60%;margin-left: 20%">
         <div class="nameOfBox2" style="padding-top: 10px"><a
-                href="registration.php"><span>No account? Create one here</span></a></div>
+                    href="registration.php"><span>No account? Create one here</span></a></div>
     </div>
 
     <!--Kontajner pre Sidebar-->
-    <div class="main-grid-layout sidebarContainer">
-        <div style="padding-top: 10px" class="sidebarContent">Content</div>
-        <div class="sidebarContentText">
-            <div>
-                <div class="sidebarContentTextStyle">
-                    <a href="homePage.php">Profile</a>
-                </div>
-                <div class="sidebarContentTextStyle">
-                    <a href="homePage.php">Friends</a>
-                </div>
-                <div class="sidebarContentTextStyle">
-                    <a href="homePage.php">Massages</a>
-                </div>
-                <div style="text-align: center;margin-top: 1vh;margin-bottom: -15vh">
-                    <a href="homePage.php">Your Posts</a>
-                </div>
-            </div>
-        </div>
-        <div style="padding-top: 10px" class="sidebarSettings">Settings</div>
-        <div class="sidebarSettingsText">
-            <div class="sidebarContentText">
-                <div>
-                    <div class="sidebarContentTextStyle">
-                        <a href="homePage.php">User Settings</a>
-                    </div>
-                    <div class="sidebarContentTextStyle">
-                        <a href="homePage.php">Help Center</a>
-                    </div>
-                    <div style="text-align: center;margin-top: 1vh;margin-bottom: -15vh">
-                        <a href="homePage.php">Sign Out</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <?php include "sidebar.php"; ?>
 
     <!--Reklamy-->
     <div class="design ads">

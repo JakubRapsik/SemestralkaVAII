@@ -1,11 +1,12 @@
-<?php include "newSession.php"; ?>
+<?php //include "newSession.php"; ?>
+<?php session_start(); ?>
 
 <div class="main-grid-layout header">
     <a href="homePage.php" class="design head">Home</a>
     <a href="menu.php" class="design head2">Menu</a>
     <?php
-    $user = $_SESSION['userid'];
-    if (isset($_SESSION['userid'])) {
+    $user = $_SESSION['username'];
+    if (isset($_SESSION['username'])) {
         echo '<a href="login.php" class="design head3">'.$user.'</a>';
     } else {
         echo '<a href="login.php" class="design head3">Login</a>';
