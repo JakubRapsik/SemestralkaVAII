@@ -13,9 +13,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     $confirm_password = trim($_POST["confirm_password"]);
     $password_hash = password_hash($password, PASSWORD_BCRYPT);
 
-    if (empty($name)) {
-        $error .= '<p>Please enter name.</p>';
-    }
 
     if ($poziadavka = $db->prepare("SELECT * FROM Users WHERE email = ?")) {
         $poziadavka->bind_param('s', $email);
@@ -26,6 +23,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
         } else {
             if (strlen($password) < 6) {
                 $error .= '<p>Password must have atleast 6 characters.</p>';
+            }
+            if (strlen($name) < 6) {
+                $error .= '<p>Name must have atleast 6 characters.</p>';
             }
             if (empty($confirm_password)) {
                 $error .= '<p>Please enter confirm password.</p>';
@@ -78,8 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                 <form action="#" method="post">
                     <div>
                         <label>
-                            <input type="text" name="name" placeholder="Username" required minlength="6"
-                                   maxlength="15">
+                            <input type="text" name="name" placeholder="Username" required minlength="6">
                         </label>
                     </div>
                     <div>

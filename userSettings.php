@@ -27,6 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
             $poziadavka->execute();
             $poziadavka->store_result();
             $_SESSION['username'] = $name;
+            $poziadavka->close();
             $error .= '<p>Changes were applied</p>';
         }
     }
@@ -41,13 +42,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                 $poziadavka->bind_param('ss', $password_hash, $email);
                 $poziadavka->execute();
                 $poziadavka->store_result();
+                $poziadavka->close();
                 $error .= '<p>Changes were applied</p>';
             } else {
                 $error .= '<p>Passwords dont match</p>';
             }
         }
     }
-    $poziadavka->close();
     // Close DB connection
     mysqli_close($db);
 }
@@ -78,8 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                         $user = $_SESSION['username'];
                         echo '<p style="margin: 0;">Username: ' . $user . '</p>';
                         echo '<label>';
-                        echo '<input type="text" name="name" placeholder="New Username" minlength="6"
-                                   maxlength="15">';
+                        echo '<input type="text" name="name" placeholder="New Username" minlength="6">';
                         echo '</label>'
                         ?>
                     </div>
@@ -87,7 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                         <?php
                         echo '<p style="margin-bottom: 0; margin-top: 1%">Do you wish to change your password?</p>';
                         echo '<label>';
-                        echo '<input type="password" name="password" placeholder="New Password">';
+                        echo '<input type="password" name="password" placeholder="New Password" minlength="6">';
                         echo '</label>'
                         ?>
                     </div>
