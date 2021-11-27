@@ -4,7 +4,6 @@ global $error;
 global $vlozenieDB;
 
 require_once "config.php";
-//require_once "newSession.php";
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
@@ -21,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
 
     if (!empty($name)) {
         if (strlen($name) < 6) {
-            $error .= '<p>Name must have atleast 6 characters.</p>';
+            $error .= '<p> Name must have atleast 6 characters.</p>';
         } else {
             $poziadavka = $db->prepare("UPDATE Users set meno = ? where email = ?");
             $poziadavka->bind_param('ss', $name, $email);
@@ -73,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
         <?php echo $error; ?>
         <div class="box1Text">
             <div class="fillWindows register" style="height: 100%">
-                <form action="" method="post">
+                <form action="#" method="post">
                     <div>
                         <?php
                         $user = $_SESSION['username'];
@@ -105,10 +104,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
         </div>
     </div>
 
+    <script>
+        function zmazanie() {
+            alert("Hello! I am an alert box!");
+        }
+    </script>
+
     <!--Kontajner pre DeleteUsera-->
     <div class="main-grid-layout box2Container" style="text-align: center;max-width: 70%;margin-left: 15%">
         <div class="nameOfBox2" style="padding-top: 10px"><a
-                    href="registration.php"><span style="color: red">Delete account</span></a></div>
+                    href="profileDelete.php" onclick="return confirm('Are you sure you want to delete this account?');"><span style="color: red">Delete account</span></a></div>
     </div>
 
     <!--Kontajner pre Sidebar-->

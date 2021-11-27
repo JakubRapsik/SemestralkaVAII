@@ -2,7 +2,6 @@
 global $error;
 
 require_once "config.php";
-//require_once "newSession.php";
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
@@ -66,7 +65,7 @@ mysqli_close($db);
         <?php echo $error; ?>
         <div class="box1Text">
             <div class="fillWindows">
-                <form action="" method="post">
+                <form action="#" method="post">
                     <div class="fillWindows">
                         <label>
                             <input type="email" name="email" placeholder="Email" required>

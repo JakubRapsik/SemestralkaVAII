@@ -4,7 +4,6 @@ global $error;
 global $vlozenieDB;
 
 require_once "config.php";
-//require_once "newSession.php";
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
@@ -76,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
         <?php echo $error; ?>
         <div class="box1Text">
             <div class="fillWindows register">
-                <form action="" method="post">
+                <form action="#" method="post">
                     <div>
                         <label>
                             <input type="text" name="name" placeholder="Username" required minlength="6"
