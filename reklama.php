@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="en">
 <style>
     .mySlides {
         display: none;
@@ -11,3 +13,4 @@
     <a href="homePage.php"><img class="mySlides" src="Resources/ads4.jpg" alt=""></a>
     <script src="Scripts/sliderShow.js"></script>
 </div>
+</html>
