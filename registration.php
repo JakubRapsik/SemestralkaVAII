@@ -88,12 +88,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                     </div>
                     <div>
                         <label>
-                            <input type="password" name="password" placeholder="Password" required>
+                            <input type="password" name="password" id="Psw" placeholder="Password" required>
                         </label>
                     </div>
                     <div>
                         <label>
-                            <input type="password" name="confirm_password" placeholder="Password Confirmation" required>
+                            <input type="password" name="confirm_password" id="CPsw" placeholder="Password Confirmation"
+                                   required>
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <script src="Scripts/passwordShow.js"></script>
+                            <input type="checkbox" onclick="showPassword()"><a
+                                    style="margin-left: 1%;"
+                                    href="registration.php">Show Password</a>
                         </label>
                     </div>
                     <div>
@@ -122,9 +131,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     <?php include "sidebar.php"; ?>
 
     <!--Reklamy-->
-    <div class="design ads">
-        <a href="homePage.php"><img src="Resources/ads.jpg" alt=""></a>
-    </div>
+    <?php include "reklama.php"; ?>
+
+
+
     <div class="design footer">Footer</div>
 
 </div>

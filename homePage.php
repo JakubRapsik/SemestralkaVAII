@@ -140,9 +140,7 @@
     <?php include "sidebar.php"; ?>
 
     <!--Reklamy-->
-    <div class="design ads">
-        <a href="homePage.php"><img src="Resources/ads.jpg" alt=""></a>
-    </div>
+    <?php include "reklama.php"; ?>
 
     <div class="design footer">Footer</div>
 </div>

@@ -73,7 +73,7 @@ mysqli_close($db);
                     </div>
                     <div class="fillWindows">
                         <label>
-                            <input type="password" name="password" placeholder="Password" required>
+                            <input type="password" name="password" id="Psw" placeholder="Password" required>
                         </label>
                     </div>
                     <div>
@@ -81,7 +81,8 @@ mysqli_close($db);
                     </div>
                     <div>
                         <label>
-                            <input type="checkbox" checked="checked" name="remember"> Remember me
+                            <script src="Scripts/passwordShow.js"></script>
+                            <input type="checkbox" onclick="showPassword()"> Show Password
                         </label>
                     </div>
                 </form>
@@ -99,9 +100,10 @@ mysqli_close($db);
     <?php include "sidebar.php"; ?>
 
     <!--Reklamy-->
-    <div class="design ads">
-        <a href="homePage.php"><img src="Resources/ads.jpg" alt=""></a>
-    </div>
+    <?php include "reklama.php"; ?>
+
+
+
     <div class="design footer">Footer</div>
 
 </div>
