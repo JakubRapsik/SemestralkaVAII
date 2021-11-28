@@ -113,7 +113,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     <!--Kontajner pre DeleteUsera-->
     <div class="main-grid-layout box2Container" style="text-align: center;max-width: 70%;margin-left: 15%">
         <div class="nameOfBox2" style="padding-top: 10px"><a
-                    href="profileDelete.php" onclick="return confirm('Are you sure you want to delete this account?');"><span style="color: red">Delete account</span></a></div>
+                    href="profileDelete.php" onclick="return confirm('Are you sure you want to delete this account?');"><span
+                        style="color: red">Delete account</span></a></div>
     </div>
 
     <!--Kontajner pre Sidebar-->
@@ -121,7 +122,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
 
     <!--Reklamy-->
     <?php include "reklama.php"; ?>
-
 
 
     <div class="design footer">Footer</div>

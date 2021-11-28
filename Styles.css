@@ -116,6 +116,8 @@ a {
 }
 
 .ads {
+    margin-right: auto;
+    margin-left: auto;
     grid-area: add;
     background: none;
 }
@@ -315,6 +317,7 @@ button:hover {
 
 @media (min-width: 750px) and (min-height: 700px) {
     .ads {
+        margin-left: 0;
         max-height: 50%;
         max-width: 70%;
         margin-right: 3%;
@@ -368,6 +371,7 @@ button:hover {
 
 @media (min-width: 1020px)  and (min-height: 700px) {
     .ads {
+        margin-left: 0;
         background: none;
         max-width: 250px;
         max-height: 250px;
