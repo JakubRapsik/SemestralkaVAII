@@ -34,8 +34,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
 
     if (!empty($password) && !empty($confirm_password)) {
 
-        if (strlen($password) < 6) {
-            $error .= '<p>Password must have atleast 6 characters.</p>';
+        if (strlen($password) < 8) {
+            $error .= '<p>Password must have atleast 8 characters.</p>';
         } else {
             if ($password == $confirm_password) {
                 $poziadavka = $db->prepare("UPDATE Users set heslo = ? where email = ?");
@@ -62,6 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>UserSettings</title>
 </head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.2.0/zxcvbn.js"></script>
 <body>
 <div class="main-grid-layout container">
 
@@ -80,16 +81,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                         echo '<p style="margin: 0;">Username: ' . $user . '</p>';
                         echo '<label>';
                         echo '<input type="text" name="name" placeholder="New Username" minlength="6">';
-                        echo '</label>'
+                        echo '</label>';
                         ?>
                     </div>
                     <div>
-                        <?php
-                        echo '<p style="margin-bottom: 0; margin-top: 1%">Do you wish to change your password?</p>';
-                        echo '<label>';
-                        echo '<input type="password" name="password" placeholder="New Password" minlength="6">';
-                        echo '</label>'
-                        ?>
+                        <div>
+                            <p style="margin-bottom: 0; margin-top: 1%">Do you wish to change your password?</p>
+                            <label>
+                                <input type="password" name="password" id="Psw" placeholder="New Password" minlength="8">
+                            </label>
+                        </div>
+                        <div style="margin: 0">
+                            <label>
+                                <meter max="4" id="strength-meter"></meter>
+                                <div id="strength-text"></div>
+                            </label>
+                        </div>
+                        <script src="Scripts/passwordStrength.js"></script>
                     </div>
                     <div>
                         <label>
@@ -111,7 +119,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     </script>
 
     <!--Kontajner pre DeleteUsera-->
-    <div class="main-grid-layout box2Container" style="text-align: center;max-width: 70%;margin-left: 15%">
+    <div class="main-grid-layout box2Container" style="text-align: center;max-width: 70%;margin-left: 15%; margin-top: 1%">
         <div class="nameOfBox2" style="padding-top: 10px"><a
                     href="profileDelete.php" onclick="return confirm('Are you sure you want to delete this account?');"><span
                         style="color: red">Delete account</span></a></div>

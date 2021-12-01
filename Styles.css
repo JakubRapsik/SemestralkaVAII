@@ -17,6 +17,34 @@ a {
     text-decoration: none;
 }
 
+meter::-webkit-meter-bar {
+    background: rgba(0, 0, 0, 0.1) none;
+}
+
+meter[value="1"]::-webkit-meter-optimum-value {
+    background: red;
+}
+
+meter[value="2"]::-webkit-meter-optimum-value {
+    background: yellow;
+}
+
+meter[value="3"]::-webkit-meter-optimum-value {
+    background: orange;
+}
+
+meter[value="4"]::-webkit-meter-optimum-value {
+    background: green;
+}
+
+.feedback {
+    color: #9ab;
+    font-size: 90%;
+    padding: 0 .25em;
+    font-family: Courgette, cursive;
+    margin-top: 1em;
+}
+
 .main-grid-layout > * {
     padding: 3px;
     color: whitesmoke;
@@ -309,10 +337,18 @@ button:hover {
     color: whitesmoke;
 }
 
+.fillWindows meter {
+    width: 55vw;
+}
+
 .fillWindows.register input {
     margin: 2% 0 0;
     padding: 10px;
     font-size: 15px;
+}
+
+.fillWindows.register meter {
+    margin: 0;
 }
 
 @media (min-width: 750px) and (min-height: 700px) {
@@ -324,6 +360,10 @@ button:hover {
     }
 
     .fillWindows input[type=text], input[type=password], input[type=email] {
+        width: 30vh;
+    }
+
+    .fillWindows meter {
         width: 30vh;
     }
 

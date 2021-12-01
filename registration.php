@@ -21,8 +21,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
         if ($poziadavka->num_rows > 0) {
             $error .= '<p>The email address is already registered!</p>';
         } else {
-            if (strlen($password) < 6) {
-                $error .= '<p>Password must have atleast 6 characters.</p>';
+            if (strlen($password) < 8) {
+                $error .= '<p>Password must have atleast 8 characters.</p>';
             }
             if (strlen($name) < 6) {
                 $error .= '<p>Name must have atleast 6 characters.</p>';
@@ -63,6 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Registration</title>
 </head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.2.0/zxcvbn.js"></script>
 <body>
 <div class="main-grid-layout container">
 
@@ -87,9 +88,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                         </label>
                     </div>
                     <div>
-                        <label>
-                            <input type="password" name="password" id="Psw" placeholder="Password" required>
-                        </label>
+                        <div>
+                            <label>
+                                <input type="password" name="password" id="Psw" placeholder="Password" required minlength="8">
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <meter max="4" id="strength-meter"></meter>
+                                <div id="strength-text"></div>
+                            </label>
+                        </div>
+                        <script src="Scripts/passwordStrength.js"></script>
                     </div>
                     <div>
                         <label>
@@ -101,8 +111,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                         <label>
                             <script src="Scripts/passwordShow.js"></script>
                             <input type="checkbox" onclick="showPassword()"><a
-                                    style="margin-left: 1%;"
-                                    href="registration.php">Show Password</a>
+                                    style="margin-left: 1%;">Show Password</a>
                         </label>
                     </div>
                     <div>
@@ -122,7 +131,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     </div>
 
     <!--Kontajner pre Login-->
-    <div class="main-grid-layout box2Container" style="text-align: center;max-width: 70%;margin-left: 15%">
+    <div class="main-grid-layout box2Container" style="text-align: center;max-width: 70%;margin-left: 15%; margin-top: 7%">
         <div class="nameOfBox2" style="padding-top: 10px"><a
                     href="login.php"><span>already have an account? log in</span></a></div>
     </div>
@@ -132,7 +141,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
 
     <!--Reklamy-->
     <?php include "reklama.php"; ?>
-
 
 
     <div class="design footer">Footer</div>
