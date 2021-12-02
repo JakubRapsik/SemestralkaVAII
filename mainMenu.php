@@ -1,4 +1,3 @@
-<?php //include "newSession.php"; ?>
 <?php session_start(); ?>
 
 <div class="main-grid-layout header">
