@@ -13,6 +13,8 @@
     <!--Kontajner pre Header a SearchBar-->
     <?php include "mainMenu.php"; ?>
 
+    <?php include "sidebar.php"; ?>
+
 </div>
 
 </body>

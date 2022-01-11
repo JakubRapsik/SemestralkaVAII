@@ -125,8 +125,8 @@
                                                    style="color: lightgray"></i>
                         Topic4</a>
                     <div class="forumCount">
-                        <div style="margin-left: 2.5vh;font-size: 65%">By: Jakub Rapsik</div>
-                        <div style="margin-left: 2.5vh;font-size: 65%;color: lightsteelblue">729
+                        <div class="activityCreator">By: Jakub Rapsik</div>
+                        <div class="countSetup">729
                             <span style="color: whitesmoke;">Posts</span>
                         </div>
                     </div>
