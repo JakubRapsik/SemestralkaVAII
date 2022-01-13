@@ -26,7 +26,7 @@ function skore(heslo) {
     if (!heslo)
         return score;
 
-    let znaky = new Object();
+    let znaky = {};
     for (let i = 0; i < heslo.length; i++) {
         znaky[heslo[i]] = (znaky[heslo[i]] || 0) + 1;
         score += 5.0 / znaky[heslo[i]];

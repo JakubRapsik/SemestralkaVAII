@@ -10,68 +10,45 @@
 <body>
 <div class="main-grid-layout container">
 
+
     <!--Kontajner pre Header a SearchBar-->
     <?php include "mainMenu.php"; ?>
 
-    <!--Kontajner pre Fav.Categorie-->
+
+    <!--    Kontajner pre Fav.Categorie-->
     <div class="main-grid-layout box1Container">
         <div style="padding-top: 10px" class="nameOfBox1">Favourite Category's</div>
         <div class="box1Text">
             <div>
-                <div class="forumContainerSpacing">
-                    <div class="categoryRow">
-                        <a href="https://google.sk"><i class="fa fa-comment-o" aria-hidden="true"
-                                                       style="color: lightgray;margin-right: 3px">
-
-                            </i>Announcements</a>
-                        <div class="subCategoryTxt">Announcements about stuff...</div>
-                    </div>
-                    <div class="forumCount">
-                        <div class="countSetup">20
-                            <span style="color: whitesmoke;">Topics</span>
-                        </div>
-                        <div class="countSetup">180
-                            <span style="color: whitesmoke;">Posts</span>
-                        </div>
-                    </div>
+                <?php
+                require_once "config.php";
+                $recom = $db->query("SELECT * from Categories where Categories.Id_categorie>0 order by Id_categorie ASC limit 3");
+                while ($row1 = $recom->fetch_row()) {
+                    $sql = "SELECT Id_topicu FROM Topics where Id_categorie = $row1[0]";
+                    if ($result = mysqli_query($db, $sql)) {
+                        $rowcount = mysqli_num_rows($result);
+                    }
+                    $sql2 = "SELECT * FROM Posts where Id_categorie = $row1[0]";
+                    if ($result2 = mysqli_query($db, $sql2)) {
+                        $rowcount2 = mysqli_num_rows($result2);
+                    }
+                    echo '<div class="forumContainerSpacing">
+                            <div class="categoryRow">
+                            <a href="/Categories/categorie.php?data=' . $row1[1] . '">
+                            <i class="fa fa-comment-o" aria-hidden="true" style="color: lightgray;margin-right: 3px">
+                                </i>' . $row1[1] . '</a>
+                                <div class="subCategoryTxt">' . $row1[3] . '</div></div>
+                                 <div class="forumCount">
+                                    <div class="countSetup">' . $rowcount . '
+                    <span style="color: whitesmoke;">Topics</span>
                 </div>
-            </div>
-            <div>
-                <div class="forumContainerSpacing">
-                    <div class="categoryRow">
-                        <a href="https://google.sk"><i class="fa fa-comment-o" aria-hidden="true"
-                                                       style="color: lightgray;margin-right: 3px">
-
-                            </i>Questions</a>
-                        <div class="subCategoryTxt">Answers to frequent questions</div>
-                    </div>
-                    <div class="forumCount">
-                        <div class="countSetup">11
-                            <span style="color: whitesmoke;">Topics</span>
-                        </div>
-                        <div class="countSetup">98
-                            <span style="color: whitesmoke;">Posts</span>
-                        </div>
-                    </div>
+                        <div class="countSetup">' . $rowcount2 . '
+                    <span style="color: whitesmoke;">Posts</span>
+                </div>           
                 </div>
-            </div>
-            <div>
-                <div class="forumContainerSpacing">
-                    <div class="categoryRow">
-                        <a href="https://google.sk"><i class="fa fa-comment-o" aria-hidden="true"
-                                                       style="color: lightgray;margin-right: 3px"></i>
-                            Game Events</a>
-                        <div class="subCategoryTxt">Announcements about game events</div>
-                    </div>
-                    <div class="forumCount">
-                        <div class="countSetup">3
-                            <span style="color: whitesmoke;">Topics</span>
-                        </div>
-                        <div class="countSetup">40
-                            <span style="color: whitesmoke;">Posts</span>
-                        </div>
-                    </div>
-                </div>
+                </div>';
+                }
+                ?>
             </div>
         </div>
     </div>
