@@ -27,7 +27,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                 if (password_verify($password, $hash)) {
                     $_SESSION["username"] = $meno;
                     $_SESSION["usermail"] = $email;
-                    // Redirect the user to welcome page
                     header("location: ../homePage.php");
                     exit;
                 } else {

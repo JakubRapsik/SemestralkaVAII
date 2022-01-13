@@ -22,8 +22,8 @@
             <div>
                 <?php
                 require_once "includes/config.php";
-                $recom = $db->query("SELECT * from Categories where Categories.Id_categorie>0 order by Id_categorie ASC limit 3");
-                while ($row1 = $recom->fetch_row()) {
+                $fav = $db->query("SELECT * from Categories where Categories.Id_categorie>0 order by Id_categorie limit 3");
+                while ($row1 = $fav->fetch_row()) {
                     $sql = "SELECT Id_topicu FROM Topics where Id_categorie = $row1[0]";
                     if ($result = mysqli_query($db, $sql)) {
                         $rowcount = mysqli_num_rows($result);
