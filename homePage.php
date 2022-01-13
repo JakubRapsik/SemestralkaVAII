@@ -12,7 +12,7 @@
 
 
     <!--Kontajner pre Header a SearchBar-->
-    <?php include "mainMenu.php"; ?>
+    <?php include "includes/mainMenu.php"; ?>
 
 
     <!--    Kontajner pre Fav.Categorie-->
@@ -21,7 +21,7 @@
         <div class="box1Text">
             <div>
                 <?php
-                require_once "config.php";
+                require_once "includes/config.php";
                 $recom = $db->query("SELECT * from Categories where Categories.Id_categorie>0 order by Id_categorie ASC limit 3");
                 while ($row1 = $recom->fetch_row()) {
                     $sql = "SELECT Id_topicu FROM Topics where Id_categorie = $row1[0]";
@@ -114,10 +114,10 @@
 
 
     <!--Kontajner pre Sidebar-->
-    <?php include "sidebar.php"; ?>
+    <?php include "includes/sidebar.php"; ?>
 
     <!--Reklamy-->
-    <?php include "reklama.php"; ?>
+    <?php include "includes/reklama.php"; ?>
 
     <div class="design footer">Footer</div>
 </div>

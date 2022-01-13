@@ -11,9 +11,9 @@
 <div class="main-grid-layout container">
 
     <!--Kontajner pre Header a SearchBar-->
-    <?php include "mainMenu.php"; ?>
+    <?php include "includes/mainMenu.php"; ?>
 
-    <?php include "sidebar.php"; ?>
+    <?php include "includes/sidebar.php"; ?>
 
 </div>
 

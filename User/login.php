@@ -1,7 +1,7 @@
 <?php
 global $error;
 
-require_once "../config.php";
+require_once "../includes/config.php";
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
@@ -57,7 +57,7 @@ mysqli_close($db);
 <div class="main-grid-layout container">
 
     <!--Kontajner pre Header a SearchBar-->
-    <?php include "../mainMenu.php"; ?>
+    <?php include "../includes/mainMenu.php"; ?>
 
     <!--Kontajner pre Login-->
     <div class="main-grid-layout box1Container" style="text-align: center;max-width: 60%;margin-left: 20%">
@@ -97,10 +97,10 @@ mysqli_close($db);
     </div>
 
     <!--Kontajner pre Sidebar-->
-    <?php include "../sidebar.php"; ?>
+    <?php include "../includes/sidebar.php"; ?>
 
     <!--Reklamy-->
-    <?php include "../reklama.php"; ?>
+    <?php include "../includes/reklama.php"; ?>
 
 
 

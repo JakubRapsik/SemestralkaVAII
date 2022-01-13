@@ -3,7 +3,7 @@
 global $error;
 global $vlozenieDB;
 
-require_once "../config.php";
+require_once "../includes/config.php";
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     $email = $_SESSION['usermail'];
 
     if (empty($name) && empty($password) && empty($confirm_password)) {
-        header("Location: userSettings.php");
+        header("Location: ../User/userSettings.php");
     }
 
 
@@ -67,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
 <div class="main-grid-layout container">
 
     <!--Kontajner pre Header a SearchBar-->
-    <?php include "../mainMenu.php"; ?>
+    <?php include "../includes/mainMenu.php"; ?>
     <!--Kontajner pre UserSettings-->
     <div class="main-grid-layout box1Container" style="text-align: center;max-width: 70%;margin-left: 15%">
         <div style="padding-top: 10px" class="nameOfBox1">User settings</div>
@@ -120,10 +120,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     </div>
 
     <!--Kontajner pre Sidebar-->
-    <?php include "../sidebar.php"; ?>
+    <?php include "../includes/sidebar.php"; ?>
 
     <!--Reklamy-->
-    <?php include "../reklama.php"; ?>
+    <?php include "../includes/reklama.php"; ?>
 
 
     <div class="design footer">Footer</div>
