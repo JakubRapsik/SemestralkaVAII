@@ -249,7 +249,6 @@ meter[value="4"]::-webkit-meter-optimum-value {
     grid-template-areas:
         "forum"
         "forumcat";
-
 }
 
 .main-grid-layout.header {

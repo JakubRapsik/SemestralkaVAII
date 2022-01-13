@@ -34,7 +34,7 @@
                     }
                     echo '<div class="forumContainerSpacing">
                             <div class="categoryRow">
-                            <a href="/Categories/categorie.php?data=' . $row1[1] . '">
+                            <a href="/Categories/categorie.php?data=' . $row1[1] . '& data2=' . $rowcount . '">
                             <i class="fa fa-comment-o" aria-hidden="true" style="color: lightgray;margin-right: 3px">
                                 </i>' . $row1[1] . '</a>
                                 <div class="subCategoryTxt">' . $row1[3] . '</div></div>
