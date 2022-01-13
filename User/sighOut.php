@@ -3,6 +3,6 @@
 session_start();
 
 if (session_destroy()) {
-    header("Location: homePage.php");
+    header("Location: ../homePage.php");
     exit;
 }

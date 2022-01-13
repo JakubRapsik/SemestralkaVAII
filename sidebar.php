@@ -3,16 +3,16 @@
     <div class="sidebarContentText">
         <div>
             <div class="sidebarContentTextStyle">
-                <a href="homePage.php">Profile</a>
+                <a href="/homePage.php">Profile</a>
             </div>
             <div class="sidebarContentTextStyle">
-                <a href="homePage.php">Friends</a>
+                <a href="/homePage.php">Friends</a>
             </div>
             <div class="sidebarContentTextStyle">
-                <a href="homePage.php">Massages</a>
+                <a href="/homePage.php">Massages</a>
             </div>
             <div style="text-align: center;margin-top: 1vh;margin-bottom: -15vh">
-                <a href="homePage.php">Your Posts</a>
+                <a href="/homePage.php">Your Posts</a>
             </div>
         </div>
     </div>
@@ -24,17 +24,17 @@
                     <?php
                     $user = $_SESSION['username'];
                     if (isset($_SESSION['username'])) {
-                        echo '<a href="userSettings.php">User Settings</a>';
+                        echo '<a href="/User/userSettings.php">User Settings</a>';
                     } else {
-                        echo '<a href="login.php">User Settings</a>';
+                        echo '<a href="/User/login.php">User Settings</a>';
                     }
                     ?>
                 </div>
                 <div class="sidebarContentTextStyle">
-                    <a href="homePage.php">Help Center</a>
+                    <a href="/homePage.php">Help Center</a>
                 </div>
                 <div style="text-align: center;margin-top: 1vh;margin-bottom: -15vh">
-                    <a href="sighOut.php">Sign Out</a>
+                    <a href="/User/sighOut.php">Sign Out</a>
                 </div>
             </div>
         </div>

@@ -3,7 +3,7 @@
 global $error;
 global $vlozenieDB;
 
-require_once "config.php";
+require_once "../config.php";
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                 if ($vysledok) {
                     $error .= '<p>Your registration was successful!</p>';
                     $_SESSION['username'] = $name;
-                    header("location: homePage.php");
+                    header("location: ../homePage.php");
                 } else {
                     $error .= '<p>Something went wrong!</p>';
                 }
@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" type="text/css" href="Styles.css"/>
+    <link rel="stylesheet" type="text/css" href="../Styles.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -68,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
 <div class="main-grid-layout container">
 
     <!--Kontajner pre Header a SearchBar-->
-    <?php include "mainMenu.php"; ?>
+    <?php include "../mainMenu.php"; ?>
 
     <!--Kontajner pre Register-->
     <div class="main-grid-layout box1Container" style="text-align: center;max-width: 70%;margin-left: 15%">
@@ -90,7 +90,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                     <div>
                         <div>
                             <label>
-                                <input type="password" name="password" id="Psw" placeholder="Password" required minlength="8">
+                                <input type="password" name="password" id="Psw" placeholder="Password" required
+                                       minlength="8">
                             </label>
                         </div>
                         <div>
@@ -99,7 +100,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                                 <div id="strength-text"></div>
                             </label>
                         </div>
-                        <script src="Scripts/passwordStrength.js"></script>
+                        <script src="../Scripts/passwordStrength.js"></script>
                     </div>
                     <div>
                         <label>
@@ -109,7 +110,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                     </div>
                     <div>
                         <label>
-                            <script src="Scripts/passwordShow.js"></script>
+                            <script src="../Scripts/passwordShow.js"></script>
                             <input type="checkbox" onclick="showPassword()"><a
                                     style="margin-left: 1%;">Show Password</a>
                         </label>
@@ -131,16 +132,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     </div>
 
     <!--Kontajner pre Login-->
-    <div class="main-grid-layout box2Container" style="text-align: center;max-width: 70%;margin-left: 15%; margin-top: 7%">
+    <div class="main-grid-layout box2Container"
+         style="text-align: center;max-width: 70%;margin-left: 15%; margin-top: 7%">
         <div class="nameOfBox2" style="padding-top: 10px"><a
                     href="login.php"><span>already have an account? log in</span></a></div>
     </div>
 
     <!--Kontajner pre Sidebar-->
-    <?php include "sidebar.php"; ?>
+    <?php include "../sidebar.php"; ?>
 
     <!--Reklamy-->
-    <?php include "reklama.php"; ?>
+    <?php include "../reklama.php"; ?>
 
 
     <div class="design footer">Footer</div>

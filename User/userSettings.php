@@ -3,7 +3,7 @@
 global $error;
 global $vlozenieDB;
 
-require_once "config.php";
+require_once "../config.php";
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" type="text/css" href="Styles.css"/>
+    <link rel="stylesheet" type="text/css" href="../Styles.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -67,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
 <div class="main-grid-layout container">
 
     <!--Kontajner pre Header a SearchBar-->
-    <?php include "mainMenu.php"; ?>
+    <?php include "../mainMenu.php"; ?>
     <!--Kontajner pre UserSettings-->
     <div class="main-grid-layout box1Container" style="text-align: center;max-width: 70%;margin-left: 15%">
         <div style="padding-top: 10px" class="nameOfBox1">User settings</div>
@@ -97,7 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                                 <div id="strength-text"></div>
                             </label>
                         </div>
-                        <script src="Scripts/passwordStrength.js"></script>
+                        <script src="../Scripts/passwordStrength.js"></script>
                     </div>
                     <div>
                         <label>
@@ -112,12 +112,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
         </div>
     </div>
 
-    <script>
-        function zmazanie() {
-            alert("Hello! I am an alert box!");
-        }
-    </script>
-
     <!--Kontajner pre DeleteUsera-->
     <div class="main-grid-layout box2Container" style="text-align: center;max-width: 70%;margin-left: 15%; margin-top: 1%">
         <div class="nameOfBox2" style="padding-top: 10px"><a
@@ -126,10 +120,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     </div>
 
     <!--Kontajner pre Sidebar-->
-    <?php include "sidebar.php"; ?>
+    <?php include "../sidebar.php"; ?>
 
     <!--Reklamy-->
-    <?php include "reklama.php"; ?>
+    <?php include "../reklama.php"; ?>
 
 
     <div class="design footer">Footer</div>

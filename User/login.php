@@ -1,7 +1,7 @@
 <?php
 global $error;
 
-require_once "config.php";
+require_once "../config.php";
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                     $_SESSION["username"] = $meno;
                     $_SESSION["usermail"] = $email;
                     // Redirect the user to welcome page
-                    header("location: homePage.php");
+                    header("location: ../homePage.php");
                     exit;
                 } else {
                     $error .= '<p>The password is not valid.</p>';
@@ -47,7 +47,7 @@ mysqli_close($db);
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" type="text/css" href="Styles.css"/>
+    <link rel="stylesheet" type="text/css" href="../Styles.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -57,7 +57,7 @@ mysqli_close($db);
 <div class="main-grid-layout container">
 
     <!--Kontajner pre Header a SearchBar-->
-    <?php include "mainMenu.php"; ?>
+    <?php include "../mainMenu.php"; ?>
 
     <!--Kontajner pre Login-->
     <div class="main-grid-layout box1Container" style="text-align: center;max-width: 60%;margin-left: 20%">
@@ -81,7 +81,7 @@ mysqli_close($db);
                     </div>
                     <div>
                         <label>
-                            <script src="Scripts/passwordShow.js"></script>
+                            <script src="../Scripts/passwordShow.js"></script>
                             <input type="checkbox" onclick="showPassword()"> Show Password
                         </label>
                     </div>
@@ -97,10 +97,10 @@ mysqli_close($db);
     </div>
 
     <!--Kontajner pre Sidebar-->
-    <?php include "sidebar.php"; ?>
+    <?php include "../sidebar.php"; ?>
 
     <!--Reklamy-->
-    <?php include "reklama.php"; ?>
+    <?php include "../reklama.php"; ?>
 
 
 
