@@ -12,7 +12,7 @@ function getTopic(category, page) {
     });
 }
 
-function deleteData(category, remove) {
+function deleteTopics(category, remove) {
     $.ajax({
         type: "POST",
         url: "../Topics/remove-topic.php",

@@ -12,8 +12,6 @@ $pocet->store_result();
 $pocet->fetch();
 $total_records = $pocet->num_rows;
 
-//$sql = $db->query("SELECT * FROM Topics where Id_categorie = $categ");
-//$total_records = mysqli_num_rows($sql);
 $total_pages = ceil($total_records / $limit);
 
 $html = "";
