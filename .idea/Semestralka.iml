@@ -10,5 +10,7 @@
     <orderEntry type="library" name="w3" level="application" />
     <orderEntry type="library" name="zxcvbn" level="application" />
     <orderEntry type="library" name="jquery" level="application" />
+    <orderEntry type="library" name="jquery-1.8.2" level="application" />
+    <orderEntry type="library" name="bootstrap3" level="application" />
   </component>
 </module>
