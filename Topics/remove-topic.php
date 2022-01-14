@@ -1,8 +1,8 @@
 <?php
 
-if (isset($_GET["data"])) {
-    $data = $_GET["data"];
-    $remove = $_GET["remove"];
+if (isset($_POST["category"])) {
+    $data = $_POST["category"];
+    $remove = $_POST["remove"];
 }
 
 include "../includes/config.php";

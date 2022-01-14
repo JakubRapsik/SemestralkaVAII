@@ -19,6 +19,7 @@ if (empty($data)) {
     <link rel="stylesheet" type="text/css" href="../Styles.css"/>
     <script type="text/javascript" charset="utf8"
             src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+    <script src="/Scripts/ajax.js"></script>
     <title>Category</title>
 </head>
 <body>
@@ -38,32 +39,10 @@ if (empty($data)) {
         $request->store_result();
         $request->bind_result($categ);
         $request->fetch();
-
-        $limit = 6;
-
-        $request2 = $db->prepare("SELECT * FROM Topics where Id_categorie = ?");
-        $request2->bind_param("i", $categ);
-        $request2->execute();
-        $request2->store_result();
-        $request2->fetch();
-        $total_records = $request2->num_rows;
-
-        $sql = $db->query("SELECT * FROM Topics where Id_categorie = $categ");
-        $total_records = mysqli_num_rows($sql);
-        $total_pages = ceil($total_records / $limit);
         ?>
         <div style="text-align: center">
             <div class='pagination text-center' id="paging">
-                <?php if (!empty($total_pages)):for ($i = 1; $i <= $total_pages; $i++):
-                    if ($i == 1):?>
-                        <li style="display:inline-block" class="aktualna" id="<?php echo $i; ?>"><a
-                                    href='getCatTopics.php?page=<?php echo $i; ?>'><?php echo $i; ?></a></li>
-                    <?php else: ?>
-                        <li style="display:inline-block" id="<?php echo $i; ?>"><a
-                                    href='getCatTopics.php?page=<?php echo $i; ?>'><?php echo $i; ?></a>
-                        </li>
-                    <?php endif; ?>
-                <?php endfor;endif; ?>
+
             </div>
         </div>
         <?php
@@ -86,18 +65,8 @@ if (empty($data)) {
     <div class="design footer">Footer</div>
 
 </div>
-</body>
 <script>
-    jQuery(document).ready(function () {
-        let data = "<?php echo "$data"?>"
-        jQuery("#vysledok").load("getCatTopics.php?page=1&data=" + data);
-        jQuery("#paging li").live('click', function (e) {
-            e.preventDefault();
-            jQuery("#vysledok").html('loading...');
-            jQuery("#paging li").removeClass('aktualna');
-            jQuery(this).addClass('aktualna');
-            let pageNum = this.id;
-            jQuery("#vysledok").load("getCatTopics.php?page=" + pageNum + "&data=" + data);
-        });
-    });
+    getTopic('<?php echo $data ?>', 1);
+    getCatPageCount('<?php echo $data ?>');
 </script>
+</body>
