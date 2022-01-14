@@ -20,95 +20,16 @@
         <div style="padding-top: 10px" class="nameOfBox1">Favourite Category's</div>
         <div class="box1Text">
             <div>
-                <?php
-                require_once "includes/config.php";
-                $fav = $db->query("SELECT * from Categories where Categories.Id_categorie>0 order by Id_categorie limit 3");
-                while ($row1 = $fav->fetch_row()) {
-                    $sql = "SELECT Id_topicu FROM Topics where Id_categorie = $row1[0]";
-                    if ($result = mysqli_query($db, $sql)) {
-                        $rowcount = mysqli_num_rows($result);
-                    }
-                    $sql2 = "SELECT * FROM Posts where Id_categorie = $row1[0]";
-                    if ($result2 = mysqli_query($db, $sql2)) {
-                        $rowcount2 = mysqli_num_rows($result2);
-                    }
-                    echo '<div class="forumContainerSpacing">
-                            <div class="categoryRow">
-                            <a href="/Categories/categorie.php?data=' . $row1[1] . '& data2=' . $rowcount . '">
-                            <i class="fa fa-comment-o" aria-hidden="true" style="color: lightgray;margin-right: 3px">
-                                </i>' . $row1[1] . '</a>
-                                <div class="subCategoryTxt">' . $row1[3] . '</div></div>
-                                 <div class="forumCount">
-                                    <div class="countSetup">' . $rowcount . '
-                    <span style="color: whitesmoke;">Topics</span>
-                </div>
-                        <div class="countSetup">' . $rowcount2 . '
-                    <span style="color: whitesmoke;">Posts</span>
-                </div>           
-                </div>
-                </div>';
-                }
-                ?>
+                <?php include "Categories/favCategory.php" ?>
             </div>
         </div>
     </div>
 
     <!--Kontajner pre Aktivne Topicky-->
     <div class="main-grid-layout box2Container">
-        <div class="nameOfBox2" style="padding-top: 10px">Active Topic's</div>
+        <div class="nameOfBox2" style="padding-top: 10px">New Topic's</div>
         <div class="box2Text">
-            <div>
-                <div class="activityContainerSpacing">
-                    <a href="https://google.sk"><i class="fa fa-comment-o" aria-hidden="true"
-                                                   style="color: lightgray"></i>
-                        Topic1</a>
-                    <div class="forumCount">
-                        <div class="activityCreator">By: Jakub Rapsik</div>
-                        <div class="countSetup">729
-                            <span style="color: whitesmoke;">Posts</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <div class="activityContainerSpacing">
-                    <a href="https://google.sk"><i class="fa fa-comment-o" aria-hidden="true"
-                                                   style="color: lightgray"></i>
-                        Topic2</a>
-                    <div class="forumCount">
-                        <div class="activityCreator">By: Jakub Rapsik</div>
-                        <div class="countSetup">729
-                            <span style="color: whitesmoke;">Posts</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <div class="activityContainerSpacing">
-                    <a href="https://google.sk"><i class="fa fa-comment-o" aria-hidden="true"
-                                                   style="color: lightgray"></i>
-                        Topic3</a>
-                    <div class="forumCount">
-                        <div class="activityCreator">By: Jakub Rapsik</div>
-                        <div class="countSetup">729
-                            <span style="color: whitesmoke;">Posts</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <div class="activityContainerSpacing">
-                    <a href="https://google.sk"><i class="fa fa-comment-o" aria-hidden="true"
-                                                   style="color: lightgray"></i>
-                        Topic4</a>
-                    <div class="forumCount">
-                        <div class="activityCreator">By: Jakub Rapsik</div>
-                        <div class="countSetup">729
-                            <span style="color: whitesmoke;">Posts</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <?php include "Topics/newTopic.php"; ?>
         </div>
     </div>
 

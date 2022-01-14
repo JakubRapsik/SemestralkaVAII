@@ -13,7 +13,37 @@
     <!--Kontajner pre Header a SearchBar-->
     <?php include "includes/mainMenu.php"; ?>
 
+    <div class="main-grid-layout box1Container">
+        <div style="padding-top: 10px" class="nameOfBox1">All categories</div>
+        <div class="box1Text">
+            <div>
+                <?php include "Categories/favCategory.php" ?>
+            </div>
+        </div>
+        <?php
+        include "includes/config.php";
+        $user = $_SESSION['username'];
+        $poziadavka = $db->prepare('SELECT permisie FROM Users where meno = ?');
+        $poziadavka->bind_param('s', $user);
+        $poziadavka->execute();
+        $poziadavka->store_result();
+        $poziadavka->bind_result($perm);
+        $poziadavka->fetch();
+
+        if (isset($_SESSION['username']) && $perm > 0) {
+            echo '<div>
+                        <button style="width: auto" name="submit" value="Submit"><a href="/Categories/add-category.php">Add Category</a></button>
+                    </div>';
+        }
+        ?>
+    </div>
+
+
     <?php include "includes/sidebar.php"; ?>
+
+    <?php include "includes/reklama.php"; ?>
+
+    <div class="design footer">Footer</div>
 
 </div>
 

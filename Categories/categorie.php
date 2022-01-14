@@ -1,3 +1,17 @@
+<?php
+
+if (isset($_GET["data"])) {
+    $data = $_GET["data"];
+}
+
+if (empty($data)) {
+    $all = 'all';
+    header("Location: ../menu.php?data=$all");
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="">
 <head>
@@ -13,32 +27,56 @@
     <?php include "../includes/mainMenu.php"; ?>
 
     <div style="height: 100%" class="main-grid-layout box1Container">
-        <div style="padding-top: 10px; text-align: center" class="nameOfBox1"></div>
-        <div class="box1Text" id="target-content">loading...</div>
-
-
+        <div style="padding-top: 10px; text-align: center" class="nameOfBox1"><?php echo $data ?></div>
+        <div class="box1Text" id="vysledok">loading...</div>
         <?php
         include('../includes/config.php');
-        $limit = 5;
-        $sql = $db->query("SELECT * FROM Topics");
+
+        $request = $db->prepare("SELECT Id_categorie FROM Categories where Nazov = ?");
+        $request->bind_param("s", $data);
+        $request->execute();
+        $request->store_result();
+        $request->bind_result($categ);
+        $request->fetch();
+
+        $limit = 6;
+
+        $request2 = $db->prepare("SELECT * FROM Topics where Id_categorie = ?");
+        $request2->bind_param("i", $categ);
+        $request2->execute();
+        $request2->store_result();
+        $request2->fetch();
+        $total_records = $request2->num_rows;
+
+        $sql = $db->query("SELECT * FROM Topics where Id_categorie = $categ");
         $total_records = mysqli_num_rows($sql);
         $total_pages = ceil($total_records / $limit);
         ?>
         <div style="text-align: center">
-            <div class='pagination text-center' id="pagination">
+            <div class='pagination text-center' id="paging">
                 <?php if (!empty($total_pages)):for ($i = 1; $i <= $total_pages; $i++):
                     if ($i == 1):?>
-                        <li style="display:inline-block" class='active' id="<?php echo $i; ?>"><a
-                                    href='getData.php?page=<?php echo $i; ?>'><?php echo $i; ?></a></li>
+                        <li style="display:inline-block" class="aktualna" id="<?php echo $i; ?>"><a
+                                    href='getCatTopics.php?page=<?php echo $i; ?>'><?php echo $i; ?></a></li>
                     <?php else: ?>
                         <li style="display:inline-block" id="<?php echo $i; ?>"><a
-                                    href='getData.php?page=<?php echo $i; ?>'><?php echo $i; ?></a>
+                                    href='getCatTopics.php?page=<?php echo $i; ?>'><?php echo $i; ?></a>
                         </li>
                     <?php endif; ?>
                 <?php endfor;endif; ?>
             </div>
         </div>
+        <?php
+        $user = $_SESSION['username'];
+        if (isset($_SESSION['username'])) {
+            echo '<div style="align-self: center">
+                        <button style="width: auto;" name="submit" value="Submit"><a href="../Topics/add-topic.php">Add Topic</a></button>
+                    </div>';
+        }
+        ?>
     </div>
+
+
     <!--Kontajner pre Sidebar-->
     <?php include "../includes/sidebar.php"; ?>
 
@@ -51,15 +89,15 @@
 </body>
 <script>
     jQuery(document).ready(function () {
-        jQuery("#target-content").load("getData.php?page=1");
-        jQuery("#pagination li").live('click', function (e) {
+        let data = "<?php echo "$data"?>"
+        jQuery("#vysledok").load("getCatTopics.php?page=1&data=" + data);
+        jQuery("#paging li").live('click', function (e) {
             e.preventDefault();
-            jQuery("#target-content").html('loading...');
-            jQuery("#pagination li").removeClass('active');
-            jQuery(this).addClass('active');
-            let data = "<?php echo "$data"?>"
+            jQuery("#vysledok").html('loading...');
+            jQuery("#paging li").removeClass('aktualna');
+            jQuery(this).addClass('aktualna');
             let pageNum = this.id;
-            jQuery("#target-content").load("getData.php?page=" + pageNum + "&data=" + data);
+            jQuery("#vysledok").load("getCatTopics.php?page=" + pageNum + "&data=" + data);
         });
     });
 </script>
