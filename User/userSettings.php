@@ -88,7 +88,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                         <div>
                             <p style="margin-bottom: 0; margin-top: 1%">Do you wish to change your password?</p>
                             <label>
-                                <input type="password" name="password" id="Psw" placeholder="New Password" minlength="8">
+                                <input type="password" name="password" id="Psw" placeholder="New Password"
+                                       minlength="8">
                             </label>
                         </div>
                         <div style="margin: 0">
@@ -113,7 +114,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     </div>
 
     <!--Kontajner pre DeleteUsera-->
-    <div class="main-grid-layout box2Container" style="text-align: center;max-width: 70%;margin-left: 15%; margin-top: 1%">
+    <div class="main-grid-layout box2Container"
+         style="text-align: center;max-width: 70%;margin-left: 15%; margin-top: 1%">
         <div class="nameOfBox2" style="padding-top: 10px"><a
                     href="profileDelete.php" onclick="return confirm('Are you sure you want to delete this account?');"><span
                         style="color: red">Delete account</span></a></div>

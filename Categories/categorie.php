@@ -1,4 +1,9 @@
 <?php
+session_start();
+$user = $_SESSION['username'];
+if (!isset($_SESSION['username'])) {
+    header("Location: ../User/login.php");
+}
 
 if (isset($_GET["data"])) {
     $data = $_GET["data"];

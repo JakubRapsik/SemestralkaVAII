@@ -9,7 +9,7 @@
                 <a href="/homePage.php">Friends</a>
             </div>
             <div class="sidebarContentTextStyle">
-                <a href="/homePage.php">Massages</a>
+                <a href="/homePage.php">Messages</a>
             </div>
             <div style="text-align: center;margin-top: 1vh;margin-bottom: -15vh">
                 <a href="/homePage.php">Your Posts</a>

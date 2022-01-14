@@ -3,14 +3,14 @@ include('../includes/config.php');
 
 $categ = $_POST['category'];
 $limit = 5;
-$request = $db->prepare("SELECT * FROM Topics 
+$pocet = $db->prepare("SELECT * FROM Topics 
     join Categories C on C.Id_categorie = Topics.Id_categorie 
         where C.Nazov = ?");
-$request->bind_param("i", $categ);
-$request->execute();
-$request->store_result();
-$request->fetch();
-$total_records = $request->num_rows;
+$pocet->bind_param("s", $categ);
+$pocet->execute();
+$pocet->store_result();
+$pocet->fetch();
+$total_records = $pocet->num_rows;
 
 //$sql = $db->query("SELECT * FROM Topics where Id_categorie = $categ");
 //$total_records = mysqli_num_rows($sql);
