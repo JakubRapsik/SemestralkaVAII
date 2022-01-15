@@ -61,7 +61,7 @@ term;
                             <i class="fa fa-comment-o" aria-hidden="true" style="color: lightgray;margin-right: 3px">
                                 </i>$row[2]</a>
                                 <div class="subCategoryTxt">$row[4]</div></div>
-                                 <div class="forumCount" id="side">
+                                 <div class="forumCount">
                                  <div class="activityCreator">By: $meno</div>
                         <div class="countSetup">$rowcount
                     <span style="color: whitesmoke;">Posts</span>
@@ -69,19 +69,19 @@ term;
 term;
     if ($autor == $meno || $perm > 0) {
         $html .= <<<term
-                <div style="text-align: center">
-                    <a onclick = '' href = "#" style = "font-size: 15px" >Edit</a >
+                <div style="margin-left: 2.5vh;">
+                    <a onclick = '' style = "font-size: 15px" >Edit</a >
                 </div>
 term;
         if ($category != "") {
             $html .= <<<term
-                <div style = "text-align: center" >
+                <div style="margin-left: 2.5vh;">
                    <a onclick = 'deleteTopics("$category","$row[2]",$page,"all")' style = "color: red; font-size: 15px" >Delete</a >
                 </div >
 term;
         } else {
             $html .= <<<term
-                <div style = "text-align: center" >
+                <div style="margin-left: 2.5vh;">
                    <a onclick = 'deleteTopics("$category","$row[2]",$page,null)' style = "color: red; font-size: 15px" >Delete</a >
                 </div >
 term;

@@ -39,7 +39,7 @@ while ($row1 = $fav->fetch_row()) {
 
     if ($perm == 1) {
         $html = <<< term
-        <div class="forumContainerSpacing" style="margin-top: 1%; margin-bottom: 1%">
+        <div class="forumContainerSpacing" style="margin-top: 1%; margin-bottom: 0%">
 term;
     } else {
         $html = <<< term
@@ -62,19 +62,19 @@ term;
 term;
     if ($perm == 1) {
         $html .= <<<term
-                <div style="text-align: center">
+                <div style="margin-left: 2.5vh;">
                     <a onclick = '' href = "#" style = "font-size: 15px" > Edit</a >
                 </div>
 term;
         if ($data != "") {
             $html .= <<<term
-                    <div style="text-align: center">
+                    <div style="margin-left: 2.5vh;">
                     <a onclick = 'deleteCategory("$row1[1]","all",$page)' style = "color: red; font-size: 15px" > Delete</a >
                 </div>
 term;
         } else {
             $html .= <<<term
-                    <div style="text-align: center">
+                    <div style="margin-left: 2.5vh;">
                     <a onclick = 'deleteCategory("$row1[1]",null,$page)' style = "color: red; font-size: 15px" > Delete</a >
                 </div>
 term;

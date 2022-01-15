@@ -25,6 +25,7 @@ if (empty($data)) {
     <script type="text/javascript" charset="utf8"
             src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
     <script src="/Scripts/ajax.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Category</title>
 </head>
 <body>
