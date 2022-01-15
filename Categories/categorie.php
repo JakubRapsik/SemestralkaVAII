@@ -10,7 +10,7 @@ if (isset($_GET["data"])) {
 }
 
 if (empty($data)) {
-    header("Location: ../menu.php?data='all'");
+    header("Location: ../menu.php?data=all");
 }
 
 ?>

@@ -29,13 +29,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                 $error .= '<p>Please enter your Content.</p>';
             }
             if (empty($error)) {
-                $maxid = getValuesFromDB($db, "SELECT max(Id_topicu) FROM Topics", null, 1)[0];
+                $sql = "SELECT max(Id_topicu) FROM Topics";
+                $maxid = getValuesFromDB($db, $sql, null, 1, false)[0];
                 $maxid++;
 
                 $sql = "SELECT Id_categorie FROM Categories where Nazov = ?";
-                $catid = getValuesFromDB($db, $sql, array($category => "s"), 1)[0];
+                $catid = getValuesFromDB($db, $sql, array($category => "s"), 1, false)[0];
 
-                $user = getValuesFromDB($db, "SELECT id FROM Users where meno = ?", array($autor => "s"), 1)[0];
+                $sql = "SELECT id FROM Users where meno = ?";
+                $user = getValuesFromDB($db, $sql, array($autor => "s"), 1, false)[0];
 
                 $datetime = date("Y-m-d H:i:s", time());
                 $vlozenieDB = $db->prepare("INSERT INTO Topics 

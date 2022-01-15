@@ -1,10 +1,12 @@
-<?php /** @noinspection ALL */
+<?php
 session_start();
+$user = $_SESSION['username'];
 if (isset($_POST["data"])) {
     $data = $_POST["data"];
     $page = $_POST["page"];
 }
 include "../includes/config.php";
+include "../includes/functions.php";
 $limit = 5;
 $start_from = ($page - 1) * $limit;
 
@@ -15,31 +17,18 @@ if ($data == "") {
 }
 while ($row1 = $fav->fetch_row()) {
 
-    $request = $db->prepare("SELECT Id_topicu FROM Topics where Id_categorie = ?");
-    $request->bind_param("i", $row1[0]);
-    $request->execute();
-    $request->store_result();
-    $request->fetch();
-    $rowcount = $request->num_rows;
+    $sql = "SELECT Id_topicu FROM Topics where Id_categorie = ?";
+    $rowcount = getValuesFromDB($db, $sql, array($row1[0] => "i"), null, true)[0];
 
-    $user = $_SESSION['username'];
-    $poziadavka = $db->prepare('SELECT permisie FROM Users where meno = ?');
-    $poziadavka->bind_param('s', $user);
-    $poziadavka->execute();
-    $poziadavka->store_result();
-    $poziadavka->bind_result($perm);
-    $poziadavka->fetch();
+    $sql = "SELECT permisie FROM Users where meno = ?";
+    $perm = getValuesFromDB($db, $sql, array($user => "s"), 1, false)[0];
 
-    $request2 = $db->prepare("SELECT * FROM Posts where Id_categorie = ?");
-    $request2->bind_param("i", $row1[0]);
-    $request2->execute();
-    $request2->store_result();
-    $request2->fetch();
-    $rowcount2 = $request2->num_rows;
+    $sql = "SELECT * FROM Posts where Id_categorie = ?";
+    $rowcount2 = getValuesFromDB($db, $sql, array($row1[0] => "i"), null, true)[0];
 
     if ($perm == 1) {
         $html = <<< term
-        <div class="forumContainerSpacing" style="margin-top: 1%; margin-bottom: 0%">
+        <div class="forumContainerSpacing" style="margin-top: 1%; margin-bottom: 0">
 term;
     } else {
         $html = <<< term
@@ -63,7 +52,7 @@ term;
     if ($perm == 1) {
         $html .= <<<term
                 <div style="margin-left: 2.5vh;">
-                    <a onclick = '' href = "#" style = "font-size: 15px" > Edit</a >
+                    <a onclick = '' href = "../Categories/edit-category.php?category=$row1[1]" style = "font-size: 15px" > Edit</a >
                 </div>
 term;
         if ($data != "") {

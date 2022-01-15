@@ -49,7 +49,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
             }
         }
     }
-    // Close DB connection
     mysqli_close($db);
 }
 ?>

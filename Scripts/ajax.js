@@ -1,5 +1,3 @@
-// noinspection JSUnusedGlobalSymbols,JSUnusedLocalSymbols
-
 function getTopic(category, page, limit) {
     $.ajax({
         type: "POST",

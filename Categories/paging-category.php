@@ -1,5 +1,4 @@
 <?php
-/** @noinspection ALL */
 include('../includes/config.php');
 
 

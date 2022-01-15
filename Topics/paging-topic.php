@@ -1,17 +1,14 @@
 <?php
-/** @noinspection ALL */
-include('../includes/config.php');
+include "../includes/config.php";
+include "../includes/functions.php";
 
 $categ = $_POST['category'];
 $limit = 5;
-$pocet = $db->prepare("SELECT * FROM Topics 
+
+$sql2 = "SELECT * FROM Topics 
     join Categories C on C.Id_categorie = Topics.Id_categorie 
-        where C.Nazov = ?");
-$pocet->bind_param("s", $categ);
-$pocet->execute();
-$pocet->store_result();
-$pocet->fetch();
-$total_records = $pocet->num_rows;
+        where C.Nazov = ?";
+$total_records = getValuesFromDB($db, $sql2, array($categ => "s"), null, true)[0];
 
 $total_pages = ceil($total_records / $limit);
 

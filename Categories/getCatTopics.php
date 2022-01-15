@@ -1,6 +1,7 @@
-<?php /** @noinspection ALL */
+<?php
 session_start();
 include('../includes/config.php');
+include "../includes/functions.php";
 $autor = $_SESSION['username'];
 $page = $_POST["page"];
 $category = $_POST["category"];
@@ -9,42 +10,29 @@ $start_from = ($page - 1) * $limit;
 
 
 if ($category != "") {
-    $request = $db->prepare("SELECT Id_categorie FROM Categories where Nazov = ?");
-    $request->bind_param("s", $category);
-    $request->execute();
-    $request->store_result();
-    $request->bind_result($categ);
-    $request->fetch();
+
+    $sql = "SELECT Id_categorie FROM Categories where Nazov = ?";
+    $categ = getValuesFromDB($db, $sql, array($category => "s"), 1, false)[0];
 
     $sql = $db->query("SELECT * FROM Topics where Id_categorie = $categ LIMIT $start_from, $limit");
 } else {
     $sql = $db->query("SELECT * FROM Topics Order By Cas desc LIMIT $limit");
 }
 
-$permisie = $db->prepare("SELECT permisie FROM Users where meno = ?");
-$permisie->bind_param("s", $autor);
-$permisie->execute();
-$permisie->store_result();
-$permisie->bind_result($perm);
-$permisie->fetch();
+$sql2 = "SELECT permisie FROM Users where meno = ?";
+$perm = getValuesFromDB($db, $sql2, array($autor => "s"), 1, false)[0];
+
 
 ?>
 <?php
 $i = 1;
 while ($row = $sql->fetch_row()) {
-    $request2 = $db->prepare("SELECT * FROM Posts where Id_topicu = ?");
-    $request2->bind_param("i", $row[0]);
-    $request2->execute();
-    $request2->store_result();
-    $request2->fetch();
-    $rowcount = $request2->num_rows;
 
-    $request3 = $db->prepare("SELECT Meno FROM Users join Topics T on Users.Id = T.id_user where Id_topicu = ?");
-    $request3->bind_param("i", $row[0]);
-    $request3->execute();
-    $request3->store_result();
-    $request3->bind_result($meno);
-    $request3->fetch();
+    $sql2 = "SELECT * FROM Posts where Id_topicu = ?";
+    $rowcount = getValuesFromDB($db, $sql2, array($row[0] => "i"), null, true)[0];
+
+    $sql2 = "SELECT Meno FROM Users join Topics T on Users.Id = T.id_user where Id_topicu = ?";
+    $meno = getValuesFromDB($db, $sql2, array($row[0] => "i"), 1, false)[0];
 
     if ($autor == $meno || $perm > 0) {
         $html = <<<term
