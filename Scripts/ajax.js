@@ -1,13 +1,28 @@
-function getTopic(category, page) {
+function getTopic(category, page, limit) {
     $.ajax({
         type: "POST",
         url: "../Categories/getCatTopics.php",
         data: {
             page,
-            category
+            category,
+            limit
         },
         success: function (data) {
             $('#vysledok').html(data);
+        }
+    });
+}
+
+function getCategory(data, page) {
+    $.ajax({
+        type: "POST",
+        url: "../Categories/favCategory.php",
+        data: {
+            data,
+            page
+        },
+        success: function (data) {
+            $('#catvysledok').html(data);
         }
     });
 }
@@ -21,18 +36,32 @@ function deleteTopics(category, remove) {
             remove
         },
         success: function (data) {
-            getTopic(category, 1);
-            getCatPageCount(category);
+            getTopic(category, 1, 5);
+            getTopicPageCount(category);
 
         }
     });
 }
 
-
-function getCatPageCount(category) {
+function deleteCategory(remove) {
     $.ajax({
         type: "POST",
-        url: "../Categories/paging-category.php",
+        url: "../Topics/remove-topic.php",
+        data: {
+            remove
+        },
+        success: function (data) {
+            getCategory('all', 1);
+            getCatPageCount();
+
+        }
+    });
+}
+
+function getTopicPageCount(category) {
+    $.ajax({
+        type: "POST",
+        url: "../Topics/paging-topic.php",
         data: {
             category
         },
@@ -44,3 +73,15 @@ function getCatPageCount(category) {
 
 }
 
+function getCatPageCount() {
+    $.ajax({
+        type: "POST",
+        url: "../Categories/paging-category.php",
+        data: {},
+        success: function (data) {
+            $('#paging').html(data);
+
+        }
+    });
+
+}

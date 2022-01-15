@@ -1,20 +1,33 @@
 <?php
-
+session_start();
 include('../includes/config.php');
-
-$limit = 5;
+$autor = $_SESSION['username'];
 $page = $_POST["page"];
 $category = $_POST["category"];
+$limit = $_POST['limit'];
 $start_from = ($page - 1) * $limit;
 
-$request = $db->prepare("SELECT Id_categorie FROM Categories where Nazov = ?");
-$request->bind_param("s", $category);
-$request->execute();
-$request->store_result();
-$request->bind_result($categ);
-$request->fetch();
 
-$sql = $db->query("SELECT * FROM Topics where Id_categorie = $categ LIMIT $start_from, $limit");
+if ($category != "") {
+    $request = $db->prepare("SELECT Id_categorie FROM Categories where Nazov = ?");
+    $request->bind_param("s", $category);
+    $request->execute();
+    $request->store_result();
+    $request->bind_result($categ);
+    $request->fetch();
+
+    $sql = $db->query("SELECT * FROM Topics where Id_categorie = $categ LIMIT $start_from, $limit");
+} else {
+    $sql = $db->query("SELECT * FROM Topics Order By Cas desc LIMIT $limit");
+}
+
+$permisie = $db->prepare("SELECT permisie FROM Users where meno = ?");
+$permisie->bind_param("s", $autor);
+$permisie->execute();
+$permisie->store_result();
+$permisie->bind_result($perm);
+$permisie->fetch();
+
 ?>
 <?php
 $i = 1;
@@ -26,6 +39,13 @@ while ($row = $sql->fetch_row()) {
     $request2->fetch();
     $rowcount = $request2->num_rows;
 
+    $request3 = $db->prepare("SELECT Meno FROM Users join Topics T on Users.Id = T.id_user where Id_topicu = ?");
+    $request3->bind_param("i", $row[0]);
+    $request3->execute();
+    $request3->store_result();
+    $request3->bind_result($meno);
+    $request3->fetch();
+
     $html = <<<term
         <div class="forumContainerSpacing">
                             <div class="categoryRow">
@@ -34,15 +54,20 @@ while ($row = $sql->fetch_row()) {
                                 </i>$row[2]</a>
                                 <div class="subCategoryTxt">$row[4]</div></div>
                                  <div class="forumCount" id="side">
+                                 <div class="activityCreator">By: $meno</div>
                         <div class="countSetup">$rowcount
                     <span style="color: whitesmoke;">Posts</span>
-                </div>      
-                <div style="text-align: right">
-                   <a onclick='deleteData("$category","$row[2]")' href="#" style="color: red;">Delete</a>
-                </div> 
-                </div>
                 </div>
 term;
+    if ($autor == $meno || $perm > 0) {
+        $html .= <<<term
+                <div style = "text-align: center" >
+                   <a onclick = 'deleteTopics("$category","$row[2]")' href = "#" style = "color: red; font-size: 15px" > Delete</a >
+                </div >
+term;
+    }
+    $html .= '</div >
+                </div >';
     echo $html;
 }
 ?>

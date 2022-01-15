@@ -5,6 +5,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" charset="utf8"
+            src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+    <script src="/Scripts/ajax.js"></script>
     <title>Menu</title>
 </head>
 <body>
@@ -15,9 +18,11 @@
 
     <div class="main-grid-layout box1Container">
         <div style="padding-top: 10px" class="nameOfBox1">All categories</div>
-        <div class="box1Text">
-            <div>
-                <?php include "Categories/favCategory.php" ?>
+        <div class="box1Text" id="catvysledok">
+        </div>
+        <div style="text-align: center">
+            <div class='pagination text-center' id="paging">
+
             </div>
         </div>
         <?php
@@ -46,6 +51,8 @@
     <div class="design footer">Footer</div>
 
 </div>
-
+<script>
+    getCategory('all', 1);
+    getCatPageCount();
+</script>
 </body>
-</html>

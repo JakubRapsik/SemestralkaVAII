@@ -23,7 +23,7 @@ if (empty($data)) {
     <!-- jQuery -->
     <link rel="stylesheet" type="text/css" href="../Styles.css"/>
     <script type="text/javascript" charset="utf8"
-            src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+            src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
     <script src="/Scripts/ajax.js"></script>
     <title>Category</title>
 </head>
@@ -71,7 +71,7 @@ if (empty($data)) {
 
 </div>
 <script>
-    getTopic('<?php echo $data ?>', 1);
-    getCatPageCount('<?php echo $data ?>');
+    getTopic('<?php echo $data ?>', 1, 5);
+    getTopicPageCount('<?php echo $data ?>');
 </script>
 </body>
