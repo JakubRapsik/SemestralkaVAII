@@ -10,8 +10,7 @@ if (isset($_GET["data"])) {
 }
 
 if (empty($data)) {
-    $all = 'all';
-    header("Location: ../menu.php?data=$all");
+    header("Location: ../menu.php?data='all'");
 }
 
 ?>
@@ -38,13 +37,6 @@ if (empty($data)) {
         <div class="box1Text" id="vysledok">loading...</div>
         <?php
         include('../includes/config.php');
-
-        $request = $db->prepare("SELECT Id_categorie FROM Categories where Nazov = ?");
-        $request->bind_param("s", $data);
-        $request->execute();
-        $request->store_result();
-        $request->bind_result($categ);
-        $request->fetch();
         ?>
         <div style="text-align: center">
             <div class='pagination text-center' id="paging">
@@ -55,7 +47,9 @@ if (empty($data)) {
         $user = $_SESSION['username'];
         if (isset($_SESSION['username'])) {
             echo '<div style="align-self: center">
-                        <button style="width: auto;" name="submit" value="Submit"><a href="../Topics/add-topic.php">Add Topic</a></button>
+                        <button style="width: auto;" name="submit" value="Submit">
+                        <a href="../Topics/add-topic.php?category=' . $data . '">Add Topic</a>
+                        </button>
                     </div>';
         }
         ?>

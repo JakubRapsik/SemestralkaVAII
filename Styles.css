@@ -298,6 +298,29 @@ a:hover {
     margin-top: 0;
 }
 
+.textarea {
+    border-radius: 3px;
+    color: whitesmoke;
+    background: #2E3A40;
+    width: 90%;
+    margin-top: 1%;
+    resize: none;
+    font-size: 15px
+}
+
+.textarea input[type=text], input[type=password], input[type=email] {
+    width: 55vw;
+    text-align: left;
+    border-radius: 3px;
+    background: #374C56;
+    padding: 15px;
+    box-sizing: border-box;
+    margin: 5% 0 0;
+    border: none;
+    font-size: 20px;
+    color: whitesmoke;
+}
+
 .register {
     border-radius: 3px;
     color: whitesmoke;

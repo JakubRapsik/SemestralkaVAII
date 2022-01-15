@@ -1,6 +1,7 @@
 <?php
 
 require_once "../includes/config.php";
+include "../includes/functions.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     $name = trim($_POST['Name'], "");
@@ -21,11 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                 $error .= '<p>Please enter your description.</p>';
             }
             if (empty($error)) {
-                $getid = $db->prepare("SELECT max(Id_categorie) FROM Categories");
-                $getid->execute();
-                $getid->store_result();
-                $getid->bind_result($maxid);
-                $getid->fetch();
+                $maxid = getValuesFromDB($db, "SELECT max(Id_categorie) FROM Categories", null, 1)[0];
                 $maxid++;
 
                 $datetime = date("Y-m-d H:i:s", time());
@@ -72,15 +69,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                 <form action="#" method="post">
                     <div class="fillWindows" style="text-align: center;">
                         <label>
-                            <input type="text" name="Name" placeholder="Name" required style="margin-top: 1%">
+                            <input type="text" name="Name" placeholder="Name" required
+                                   style="margin-top: 1%; text-align: center;">
                         </label>
                     </div>
                     <div class="fillWindows" style="text-align: center;">
                         <label>
-                            <textarea class="fillWindows" name="Description" rows="5" cols="40" maxlength="255"
+                            <textarea class="textarea" name="Description" rows="5" cols="40" maxlength="255"
                                       id="descr"
-                                      placeholder="Description" required
-                                      style="width: 90%; margin-top: 1%;resize: none"></textarea>
+                                      placeholder="Description" required></textarea>
                         </label>
                     </div>
                     <div style="text-align: center">
