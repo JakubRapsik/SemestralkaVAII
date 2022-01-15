@@ -77,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                     </div>
                     <div class="fillWindows" style="text-align: center;">
                         <label>
-                            <textarea class="fillWindows" name="Description" rows="5" cols="40" id="descr"
+                            <textarea class="fillWindows" name="Description" rows="5" cols="40" maxlength="255" id="descr"
                                       placeholder="Description" required style="width: 90%; margin-top: 1%"></textarea>
                         </label>
                     </div>

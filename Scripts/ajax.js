@@ -1,3 +1,5 @@
+// noinspection JSUnusedGlobalSymbols,JSUnusedLocalSymbols
+
 function getTopic(category, page, limit) {
     $.ajax({
         type: "POST",
@@ -27,7 +29,7 @@ function getCategory(data, page) {
     });
 }
 
-function deleteTopics(category, remove) {
+function deleteTopics(category, remove, page, type) {
     $.ajax({
         type: "POST",
         url: "../Topics/remove-topic.php",
@@ -36,23 +38,33 @@ function deleteTopics(category, remove) {
             remove
         },
         success: function (data) {
-            getTopic(category, 1, 5);
-            getTopicPageCount(category);
+            if (type == null) {
+                getTopic(null, page, 3);
+                getCategory(null, page);
+            } else {
+                getTopic(category, page, 5);
+                getTopicPageCount(category);
+            }
 
         }
     });
 }
 
-function deleteCategory(remove) {
+function deleteCategory(remove, type, page) {
     $.ajax({
         type: "POST",
-        url: "../Topics/remove-topic.php",
+        url: "../Categories/remove-category.php",
         data: {
             remove
         },
         success: function (data) {
-            getCategory('all', 1);
-            getCatPageCount();
+            if (type == null) {
+                getCategory(null, page);
+                getTopic(null, page, 3);
+            } else {
+                getCategory('all', page);
+                getCatPageCount();
+            }
 
         }
     });

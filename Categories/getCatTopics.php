@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection ALL */
 session_start();
 include('../includes/config.php');
 $autor = $_SESSION['username'];
@@ -46,8 +46,16 @@ while ($row = $sql->fetch_row()) {
     $request3->bind_result($meno);
     $request3->fetch();
 
-    $html = <<<term
+    if ($autor == $meno || $perm > 0) {
+        $html = <<<term
+        <div class="forumContainerSpacing" style="margin-top: 1%; margin-bottom: 1%">
+term;
+    } else {
+        $html = <<<term
         <div class="forumContainerSpacing">
+term;
+    }
+    $html .= <<<term
                             <div class="categoryRow">
                             <a href='../Topics/topic.php?data=$row[2]'>
                             <i class="fa fa-comment-o" aria-hidden="true" style="color: lightgray;margin-right: 3px">
@@ -61,10 +69,23 @@ while ($row = $sql->fetch_row()) {
 term;
     if ($autor == $meno || $perm > 0) {
         $html .= <<<term
+                <div style="text-align: center">
+                    <a onclick = '' href = "#" style = "font-size: 15px" >Edit</a >
+                </div>
+term;
+        if ($category != "") {
+            $html .= <<<term
                 <div style = "text-align: center" >
-                   <a onclick = 'deleteTopics("$category","$row[2]")' href = "#" style = "color: red; font-size: 15px" > Delete</a >
+                   <a onclick = 'deleteTopics("$category","$row[2]",$page,"all")' style = "color: red; font-size: 15px" >Delete</a >
                 </div >
 term;
+        } else {
+            $html .= <<<term
+                <div style = "text-align: center" >
+                   <a onclick = 'deleteTopics("$category","$row[2]",$page,null)' style = "color: red; font-size: 15px" >Delete</a >
+                </div >
+term;
+        }
     }
     $html .= '</div >
                 </div >';

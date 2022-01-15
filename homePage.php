@@ -21,10 +21,7 @@
     <!--    Kontajner pre Fav.Categorie-->
     <div class="main-grid-layout box1Container">
         <div style="padding-top: 10px" class="nameOfBox1">Favourite Category's</div>
-        <div class="box1Text">
-            <div>
-                <?php include "Categories/favCategory.php" ?>
-            </div>
+        <div class="box1Text" id="catvysledok">
         </div>
     </div>
 
@@ -44,6 +41,9 @@
 
     <div class="design footer">Footer</div>
 </div>
-<script>getTopic(null, 1, 3)</script>
+<script>
+    getTopic(null, 1, 3);
+    getCategory(null,1);
+</script>
 </body>
 </html>

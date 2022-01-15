@@ -1,18 +1,16 @@
-<?php
+<?php /** @noinspection ALL */
 session_start();
 if (isset($_POST["data"])) {
     $data = $_POST["data"];
     $page = $_POST["page"];
 }
-
+include "../includes/config.php";
 $limit = 5;
 $start_from = ($page - 1) * $limit;
 
-if (empty($data)) {
-    include "includes/config.php";
+if ($data == "") {
     $fav = $db->query("SELECT * from Categories where Categories.Id_categorie>0 order by Id_categorie limit 3");
 } else {
-    include "../includes/config.php";
     $fav = $db->query("SELECT * from Categories where Categories.Id_categorie>0 order by Id_categorie LIMIT $start_from, $limit");
 }
 while ($row1 = $fav->fetch_row()) {
@@ -39,8 +37,16 @@ while ($row1 = $fav->fetch_row()) {
     $request2->fetch();
     $rowcount2 = $request2->num_rows;
 
-    $html = <<< term
-    <div class="forumContainerSpacing">
+    if ($perm == 1) {
+        $html = <<< term
+        <div class="forumContainerSpacing" style="margin-top: 1%; margin-bottom: 1%">
+term;
+    } else {
+        $html = <<< term
+        <div class="forumContainerSpacing">
+term;
+    }
+    $html .= <<< term
                             <div class="categoryRow">
                             <a href="/Categories/categorie.php?data=$row1[1]&data2='all'">
                             <i class="fa fa-comment-o" aria-hidden="true" style="color: lightgray;margin-right: 3px">
@@ -56,10 +62,23 @@ while ($row1 = $fav->fetch_row()) {
 term;
     if ($perm == 1) {
         $html .= <<<term
-                    <div style="text-align: center">
-                    <span style="color: red; font-size: 15px;">Delete</span>
+                <div style="text-align: center">
+                    <a onclick = '' href = "#" style = "font-size: 15px" > Edit</a >
                 </div>
 term;
+        if ($data != "") {
+            $html .= <<<term
+                    <div style="text-align: center">
+                    <a onclick = 'deleteCategory("$row1[1]","all",$page)' style = "color: red; font-size: 15px" > Delete</a >
+                </div>
+term;
+        } else {
+            $html .= <<<term
+                    <div style="text-align: center">
+                    <a onclick = 'deleteCategory("$row1[1]",null,$page)' style = "color: red; font-size: 15px" > Delete</a >
+                </div>
+term;
+        }
     }
     $html .= '
                 </div>
