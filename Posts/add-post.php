@@ -2,10 +2,6 @@
 require_once "../includes/config.php";
 include "../includes/functions.php";
 session_start();
-if (!isset($_SESSION['username'])) {
-    header("Location: ../User/login.php");
-    exit;
-}
 $topic = $_GET['topic'];
 $user = $_SESSION['username'];
 

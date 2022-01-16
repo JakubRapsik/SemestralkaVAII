@@ -56,7 +56,7 @@ function deleteTopics(category, remove, page, type, pocet) {
                 getCategory(null, page);
             } else {
                 $n = (pocet % 5);
-                if ($n === 0) {
+                if ($n === 0 && page !== 1) {
                     getTopic(category, page - 1, 5);
                 } else {
                     getTopic(category, page, 5);
@@ -82,13 +82,35 @@ function deleteCategory(remove, type, page, pocet) {
                 getTopic(null, page, 3);
             } else {
                 $n = (pocet % 5);
-                if ($n === 0) {
+                if ($n === 0 && page !== 1) {
                     getCategory('all', page - 1);
                 } else {
                     getCategory('all', page);
                 }
                 getCatPageCount();
             }
+
+        }
+    });
+}
+
+function deletePost(remove, page, pocet, topic) {
+    $.ajax({
+        type: "POST",
+        url: "../Posts/remove-post.php",
+        data: {
+            remove
+        },
+        success: function () {
+            let $n;
+            $n = (pocet % 2);
+            if ($n === 0 && page !== 1) {
+                getPosts(topic, page - 1);
+            } else {
+                getPosts(topic, page);
+            }
+            getPostPageCount(topic);
+
 
         }
     });
@@ -130,7 +152,7 @@ function getPostPageCount(topic) {
             topic
         },
         success: function (data) {
-            $('#paging').html(data);
+            $('#postpaging').html(data);
 
         }
     });

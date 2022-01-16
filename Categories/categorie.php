@@ -43,8 +43,11 @@ if (empty($data)) {
 
             </div>
         </div>
-        <div style="align-self: center">
-            <a style="font-size: 20px" href="../Topics/add-topic.php?category=' . $data . '">Add Topic</a>
+        <div class="box2Container" style="text-align: center">
+            <div class="nameOfBox2">
+                <a style="font-size: 25px" href="../Topics/add-topic.php?category=<?php echo $data ?>">Add Topic
+                </a>
+            </div>
         </div>
     </div>
 

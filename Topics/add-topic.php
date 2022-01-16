@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                 $datetime = date("Y-m-d H:i:s", time());
                 $vlozenieDB = $db->prepare("INSERT INTO Topics 
                 (Id_topicu, Cas, Nazov,Id_categorie,topic_Description,topic_Obsah,id_user) 
-                VALUES (?, ?, ?,?,?,?,?);");
+                VALUES (?, ?, ?,?,?,?,?)");
                 $vlozenieDB->bind_param("ississi", $maxid, $datetime, $name, $catid, $descr, $cont, $user);
                 $vysledok = $vlozenieDB->execute();
                 if ($vysledok) {
@@ -78,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     <?php include "../includes/mainMenu.php"; ?>
 
     <div class="main-grid-layout box1Container">
-        <div style="padding-top: 10px; text-align: center" class="nameOfBox1">Create new category</div>
+        <div style="padding-top: 10px; text-align: center" class="nameOfBox1">Create new Topic</div>
         <?php echo $error; ?>
         <div class="box1Text">
             <div class="fillWindows">

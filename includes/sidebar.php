@@ -1,8 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <title>Sidebar</title>
-</head>
 <div class="main-grid-layout sidebarContainer">
     <div style="padding-top: 10px" class="sidebarContent">Content</div>
     <div class="sidebarContentText">

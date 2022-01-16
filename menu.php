@@ -35,8 +35,10 @@
         $poziadavka->fetch();
 
         if (isset($_SESSION['username']) && $perm > 0) {
-            echo '<div>
-                        <a style="font-size: 20px" href="/Categories/add-category.php">Add Category</a>
+            echo '<div class="box2Container" style="text-align: center">
+                        <div class="nameOfBox2">
+                        <a style="font-size: 25px" href="/Categories/add-category.php">Add Category</a>
+                        </div>
                     </div>';
         }
         ?>

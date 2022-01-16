@@ -48,8 +48,11 @@ $edit = false;
         <div class="nameOfBox2" style="padding-top: 10px">Posts</div>
         <div class="box2Text" id="postvysledok">
         </div>
-        <div>
-            <a style=" font-size: 20px" href="../Posts/add-post.php?topic=<?php echo $topic ?>">Add</a>
+        <div style="text-align: center" class='pagination text-center' id="postpaging">
+        </div>
+        <div class="box2Container" style="text-align: center">
+            <div class="nameOfBox2"><a style=" font-size: 25px" href="../Posts/add-post.php?topic=<?php echo $topic ?>">Add
+                    Post</a></div>
         </div>
     </div>
 

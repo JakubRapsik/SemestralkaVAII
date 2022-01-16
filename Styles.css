@@ -76,7 +76,7 @@ meter[value="4"]::-webkit-meter-optimum-value {
 }
 
 .forumCount {
-    text-align: left;
+    text-align: right;
     justify-content: left;
     padding-right: 1%;
     margin-top: 0.5%;
@@ -303,9 +303,9 @@ a:hover {
     color: whitesmoke;
     background: #2E3A40;
     width: 90%;
-    margin-top: 1%;
+    margin-top: 0.5%;
     resize: none;
-    font-size: 15px
+    font-size: 15px;
 }
 
 .textarea input[type=text], input[type=password], input[type=email] {

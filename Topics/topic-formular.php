@@ -12,11 +12,13 @@
                 <?php
                 if ($edit == true) {
                     $html = <<<term
+                    
                     <div class="fillWindows" style="text-align: center;">
                     <label>
                         <input value="$topic" type="text" name="Name" placeholder="Name" required
                                style="margin-top: 1%; text-align: center">
                     </label>
+                    <div style="font-size: 20px">Description</div>
                     </div>
                     <div class="fillWindows" style="text-align: center;">
                         <label>
@@ -24,6 +26,7 @@
                                       id="descr"
                                       placeholder="Description" required>$descr</textarea>
                         </label>
+                        <div style="font-size: 20px">Content</div>
                     </div>
                     <div class="fillWindows" style="text-align: center;">
                         <label>
@@ -43,12 +46,14 @@ term;
                         <input readonly value="$topic" type="text" name="Name" placeholder="Name" required
                                style="margin-top: 1%; text-align: center">
                     </label>
+                    <div style="font-size: 20px">Description</div>
                     </div>
                     <div class="fillWindows" style="text-align: center;">
                         <label>
                             <textarea id="$topic" readonly class="textarea" name="Description" rows="5" cols="40" maxlength="255"
                                       placeholder="Description" required>$descr</textarea>
                         </label>
+                        <div style="font-size: 20px">Content</div>
                     </div>
                     <div class="fillWindows" style="text-align: center;">
                         <label>
