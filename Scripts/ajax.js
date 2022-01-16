@@ -13,6 +13,20 @@ function getTopic(category, page, limit) {
     });
 }
 
+function getPosts(topic, page) {
+    $.ajax({
+        type: "POST",
+        url: "../Posts/get-posts.php",
+        data: {
+            page,
+            topic,
+        },
+        success: function (data) {
+            $('#postvysledok').html(data);
+        }
+    });
+}
+
 function getCategory(data, page) {
     $.ajax({
         type: "POST",
@@ -35,7 +49,7 @@ function deleteTopics(category, remove, page, type) {
             category,
             remove
         },
-        success: function (data) {
+        success: function () {
             if (type == null) {
                 getTopic(null, page, 3);
                 getCategory(null, page);
@@ -48,19 +62,25 @@ function deleteTopics(category, remove, page, type) {
     });
 }
 
-function deleteCategory(remove, type, page) {
+function deleteCategory(remove, type, page, pocet) {
     $.ajax({
         type: "POST",
         url: "../Categories/remove-category.php",
         data: {
             remove
         },
-        success: function (data) {
+        success: function () {
+            let $n;
             if (type == null) {
                 getCategory(null, page);
                 getTopic(null, page, 3);
             } else {
-                getCategory('all', page);
+                $n = (pocet % 5);
+                if ($n === 0) {
+                    getCategory('all', page - 1);
+                } else {
+                    getCategory('all', page);
+                }
                 getCatPageCount();
             }
 

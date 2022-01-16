@@ -21,7 +21,6 @@ if (empty($data)) {
 <!DOCTYPE html>
 <html lang="">
 <head>
-    <!-- jQuery -->
     <link rel="stylesheet" type="text/css" href="../Styles.css"/>
     <script type="text/javascript" charset="utf8"
             src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>

@@ -11,20 +11,31 @@ $limit = 5;
 $start_from = ($page - 1) * $limit;
 
 if ($data == "") {
-    $fav = $db->query("SELECT * from Categories where Categories.Id_categorie>0 order by Id_categorie limit 3");
+
+    $fav = $db->prepare("SELECT Id_categorie,Nazov,cat_Description from Categories 
+    where Categories.Id_categorie>0 order by Id_categorie limit 3");
 } else {
-    $fav = $db->query("SELECT * from Categories where Categories.Id_categorie>0 order by Id_categorie LIMIT $start_from, $limit");
+
+    $fav = $db->prepare("SELECT Id_categorie,Nazov,cat_Description from Categories 
+    where Categories.Id_categorie>0 order by Id_categorie LIMIT ?, ?");
+    $fav->bind_param("ii", $start_from, $limit);
 }
-while ($row1 = $fav->fetch_row()) {
+$fav->execute();
+$fav->store_result();
+$fav->bind_result($catid, $nazov, $descr);
 
+$sql = "SELECT * FROM Categories";
+$pocet = getValuesFromDB($db, $sql, null, null, true)[0];
+
+
+$sql = "SELECT permisie FROM Users where meno = ?";
+$perm = getValuesFromDB($db, $sql, array($user => "s"), 1, false)[0];
+while ($fav->fetch()) {
     $sql = "SELECT Id_topicu FROM Topics where Id_categorie = ?";
-    $rowcount = getValuesFromDB($db, $sql, array($row1[0] => "i"), null, true)[0];
-
-    $sql = "SELECT permisie FROM Users where meno = ?";
-    $perm = getValuesFromDB($db, $sql, array($user => "s"), 1, false)[0];
+    $rowcount = getValuesFromDB($db, $sql, array($catid => "i"), null, true)[0];
 
     $sql = "SELECT * FROM Posts where Id_categorie = ?";
-    $rowcount2 = getValuesFromDB($db, $sql, array($row1[0] => "i"), null, true)[0];
+    $rowcount2 = getValuesFromDB($db, $sql, array($catid => "i"), null, true)[0];
 
     if ($perm == 1) {
         $html = <<< term
@@ -37,10 +48,10 @@ term;
     }
     $html .= <<< term
                             <div class="categoryRow">
-                            <a href="/Categories/categorie.php?data=$row1[1]&data2='all'">
+                            <a href="/Categories/categorie.php?data=$nazov">
                             <i class="fa fa-comment-o" aria-hidden="true" style="color: lightgray;margin-right: 3px">
-                                </i>$row1[1]</a>
-                                <div class="subCategoryTxt">$row1[3]</div></div>
+                                </i>$nazov</a>
+                                <div class="subCategoryTxt">$descr</div></div>
                                  <div class="forumCount">
                                     <div class="countSetup">$rowcount
                     <span style="color: whitesmoke;">Topics</span>
@@ -52,19 +63,19 @@ term;
     if ($perm == 1) {
         $html .= <<<term
                 <div style="margin-left: 2.5vh;">
-                    <a onclick = '' href = "../Categories/edit-category.php?category=$row1[1]" style = "font-size: 15px" > Edit</a >
+                    <a onclick = '' href = "../Categories/edit-category.php?category=$nazov" style = "font-size: 15px" > Edit</a >
                 </div>
 term;
         if ($data != "") {
             $html .= <<<term
                     <div style="margin-left: 2.5vh;">
-                    <a onclick = 'deleteCategory("$row1[1]","all",$page)' style = "color: red; font-size: 15px" > Delete</a >
+                    <a onclick = 'deleteCategory("$nazov","all",$page,$pocet - 1)' style = "color: red; font-size: 15px" > Delete</a >
                 </div>
 term;
         } else {
             $html .= <<<term
                     <div style="margin-left: 2.5vh;">
-                    <a onclick = 'deleteCategory("$row1[1]",null,$page)' style = "color: red; font-size: 15px" > Delete</a >
+                    <a onclick = 'deleteCategory("$nazov",null,$page,$pocet - 1)' style = "color: red; font-size: 15px" > Delete</a >
                 </div>
 term;
         }

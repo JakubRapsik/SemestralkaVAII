@@ -1,9 +1,8 @@
-
-
 <div class="main-grid-layout header">
     <a href="/homePage.php" class="design head">Home</a>
     <a href="/menu.php?data=all" class="design head2">Menu</a>
     <?php
+    session_start();
     $user = $_SESSION['username'];
     if (isset($_SESSION['username'])) {
         echo '<a href="/User/userSettings.php" class="design head3">' . $user . '</a>';

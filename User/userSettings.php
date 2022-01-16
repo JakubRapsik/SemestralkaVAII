@@ -4,6 +4,7 @@ global $error;
 global $vlozenieDB;
 
 require_once "../includes/config.php";
+include "../includes/functions.php";
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
@@ -23,12 +24,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
         if (strlen($name) < 6) {
             $error .= '<p> Name must have atleast 6 characters.</p>';
         } else {
-            $poziadavka = $db->prepare("UPDATE Users set meno = ? where email = ?");
-            $poziadavka->bind_param('ss', $name, $email);
-            $poziadavka->execute();
-            $poziadavka->store_result();
+
+            $sql = "UPDATE Users set meno = ? where email = ?";
+            updateData($db, $sql, array($name, $email), "ss");
             $_SESSION['username'] = $name;
-            $poziadavka->close();
             $error .= '<p>Changes were applied</p>';
         }
     }
@@ -39,11 +38,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
             $error .= '<p>Password must have atleast 8 characters.</p>';
         } else {
             if ($password == $confirm_password) {
-                $poziadavka = $db->prepare("UPDATE Users set heslo = ? where email = ?");
-                $poziadavka->bind_param('ss', $password_hash, $email);
-                $poziadavka->execute();
-                $poziadavka->store_result();
-                $poziadavka->close();
+
+                $sql = "UPDATE Users set heslo = ? where email = ?";
+                updateData($db, $sql, array($password_hash, $email), "ss");
                 $error .= '<p>Changes were applied</p>';
             } else {
                 $error .= '<p>Passwords dont match</p>';
