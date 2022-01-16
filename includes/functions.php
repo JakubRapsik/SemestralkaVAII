@@ -29,6 +29,8 @@ function getValuesFromDB($db, $sql, $param, $pocetReturn, $rownum): array
                 $request->bind_param($types, $finalParam[0], $finalParam[1], $finalParam[2]);
                 break;
             }
+            default:
+                break;
         }
     }
     $request->execute();
@@ -55,6 +57,8 @@ function getValuesFromDB($db, $sql, $param, $pocetReturn, $rownum): array
                 $request->bind_result($results[0], $results[1], $results[2], $results[3]);
                 break;
             }
+            default:
+                break;
         }
         $request->fetch();
         return $results;
@@ -92,6 +96,8 @@ function updateData($db, $sql, $param, $type)
             $request->bind_param($type, $param[0], $param[1], $param[2], $param[3]);
             break;
         }
+        default:
+            break;
     }
     $request->execute();
 

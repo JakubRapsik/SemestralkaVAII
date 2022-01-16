@@ -8,10 +8,12 @@ if (!isset($_SESSION['username'])) {
     exit;
 }
 
+$head = "Location: ../menu.php?data=all";
+
 if (isset($_GET["category"])) {
     $category = $_GET["category"];
 } else {
-    header("Location: ../menu.php?data=all");
+    header($head);
     exit;
 }
 $sql = "SELECT cat_Description FROM Categories where Nazov = ?";
@@ -48,19 +50,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
 
                 $sql = "UPDATE Categories set Nazov = ?,cat_Description = ? where Id_categorie = ?";
                 updateData($db, $sql, array($name, $descrNew, $id), "ssi");
-                header("Location: ../menu.php?data=all");
+                header($head);
                 exit;
             }
             if ($name != $category) {
                 $sql = "UPDATE Categories set Nazov = ? where Id_categorie = ?";
                 updateData($db, $sql, array($name, $id), "si");
-                header("Location: ../menu.php?data=all");
+                header($head);
                 exit;
             }
             if ($descr != $descrNew) {
                 $sql = "UPDATE Categories set cat_Description = ? where Id_categorie = ?";
                 updateData($db, $sql, array($descrNew, $id), "si");
-                header("Location: ../menu.php?data=all");
+                header($head);
                 exit;
 
             }
