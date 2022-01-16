@@ -45,7 +45,7 @@ term;
     if ($autor == $meno || $perm > 0) {
         $html .= <<<term
                 <div style="margin-left: 2.5vh;">
-                    <a href="edit-post.php" style = "font-size: 15px" >Edit</a >
+                    <a href="../Posts/edit-post.php?postid=$idPost&topic=$topic" style = "font-size: 15px" >Edit</a >
                 </div>
 term;
         $html .= <<<term
