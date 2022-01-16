@@ -1,10 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<style>
-    .mySlides {
-        display: none;
-    }
-</style>
 <body>
 
 <div class="design ads">

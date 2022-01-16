@@ -3,6 +3,7 @@
 
 function getValuesFromDB($db, $sql, $param, $pocetReturn, $rownum): array
 {
+    $types = '';
     $results = array();
     $rows = array();
     $finalParam = array();

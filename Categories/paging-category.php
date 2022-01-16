@@ -16,9 +16,9 @@ $html = "";
 if (!empty($total_pages)):
     for ($i = 1; $i <= $total_pages; $i++):
         $html .= <<<term
-            <li style='display:inline-block' class='aktualna' id='$i'>
+            <div style='display:inline-block' class='aktualna' id='$i'>
                 <a onclick='getCategory("all",$i)'>$i</a>
-            </li>
+            </div>
 term;
     endfor;
 endif;

@@ -7,6 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
     <script src="/Scripts/ajax.js"></script>
+    <style>
+        .mySlides {
+            display: none;
+        }
+    </style>
     <title>homePage</title>
 </head>
 <body>
@@ -42,7 +47,7 @@
 </div>
 <script>
     getTopic(null, 1, 3);
-    getCategory(null,1);
+    getCategory(null, 1);
 </script>
 </body>
 </html>

@@ -1,8 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <title>Topic Formular</title>
-</head>
 <div class="main-grid-layout box1Container">
     <div style="padding-top: 10px; text-align: center" class="nameOfBox1">Topic</div>
     <?php echo $error; ?>

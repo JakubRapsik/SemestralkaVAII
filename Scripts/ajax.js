@@ -35,8 +35,8 @@ function getCategory(data, page) {
             data,
             page
         },
-        success: function (data) {
-            $('#catvysledok').html(data);
+        success: function (result) {
+            $('#catvysledok').html(result);
         }
     });
 }
