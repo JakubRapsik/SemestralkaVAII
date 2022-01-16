@@ -41,7 +41,7 @@ function getCategory(data, page) {
     });
 }
 
-function deleteTopics(category, remove, page, type) {
+function deleteTopics(category, remove, page, type, pocet) {
     $.ajax({
         type: "POST",
         url: "../Topics/remove-topic.php",
@@ -50,11 +50,17 @@ function deleteTopics(category, remove, page, type) {
             remove
         },
         success: function () {
+            let $n;
             if (type == null) {
                 getTopic(null, page, 3);
                 getCategory(null, page);
             } else {
-                getTopic(category, page, 5);
+                $n = (pocet % 5);
+                if ($n === 0) {
+                    getTopic(category, page - 1, 5);
+                } else {
+                    getTopic(category, page, 5);
+                }
                 getTopicPageCount(category);
             }
 
@@ -114,4 +120,18 @@ function getCatPageCount() {
         }
     });
 
+}
+
+function getPostPageCount(topic) {
+    $.ajax({
+        type: "POST",
+        url: "../Posts/paging-post.php",
+        data: {
+            topic
+        },
+        success: function (data) {
+            $('#paging').html(data);
+
+        }
+    });
 }

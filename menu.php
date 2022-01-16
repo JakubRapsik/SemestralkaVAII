@@ -5,8 +5,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script type="text/javascript" charset="utf8"
-            src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
     <script src="/Scripts/ajax.js"></script>
     <title>Menu</title>
 </head>
@@ -37,7 +36,7 @@
 
         if (isset($_SESSION['username']) && $perm > 0) {
             echo '<div>
-                        <button style="width: auto" name="submit" value="Submit"><a href="/Categories/add-category.php">Add Category</a></button>
+                        <a style="font-size: 20px" href="/Categories/add-category.php">Add Category</a>
                     </div>';
         }
         ?>

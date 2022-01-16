@@ -1,6 +1,8 @@
-<?php
-?>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Topic Formular</title>
+</head>
 <div class="main-grid-layout box1Container">
     <div style="padding-top: 10px; text-align: center" class="nameOfBox1">Topic</div>
     <?php echo $error; ?>
@@ -44,15 +46,14 @@ term;
                     </div>
                     <div class="fillWindows" style="text-align: center;">
                         <label>
-                            <textarea readonly class="textarea" name="Description" rows="5" cols="40" maxlength="255"
-                                      id="descr"
+                            <textarea id="$topic" readonly class="textarea" name="Description" rows="5" cols="40" maxlength="255"
                                       placeholder="Description" required>$descr</textarea>
                         </label>
                     </div>
                     <div class="fillWindows" style="text-align: center;">
                         <label>
-                            <textarea readonly class="textarea" name="Obsah" rows="5" cols="40" maxlength="500"
-                                      id="obsah"
+                            <textarea  readonly class="textarea" name="Obsah" rows="5" cols="40" maxlength="500"
+                                      id="obsah$topic"
                                       placeholder="Content" required>$cont</textarea>
                         </label>
                     </div>
@@ -66,6 +67,6 @@ term;
                 ?>
             </form>
         </div>
-
     </div>
 </div>
+</html>

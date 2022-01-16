@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
             $error .= '<p>Topic with this name already exists</p>';
         } else {
             if (empty($name)) {
-                $error .= '<p>Name must have atleast 1 character.</p>';
+                $error .= '<p>Name must have at least 1 character.</p>';
             }
             if (empty($descr)) {
                 $error .= '<p>Please enter your description.</p>';
@@ -69,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Menu</title>
+    <title>Add Topic</title>
 </head>
 <body>
 <div class="main-grid-layout container">

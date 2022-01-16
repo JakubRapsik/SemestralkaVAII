@@ -2,6 +2,11 @@
 
 require_once "../includes/config.php";
 include "../includes/functions.php";
+session_start();
+if (!isset($_SESSION['username'])) {
+    header("Location: ../User/login.php");
+    exit;
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     $name = trim($_POST['Name'], "");

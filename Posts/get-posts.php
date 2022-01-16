@@ -5,7 +5,7 @@ session_start();
 $page = $_POST['page'];
 $topic = $_POST['topic'];
 $autor = $_SESSION['username'];
-$limit = 3;
+$limit = 2;
 $start_from = ($page - 1) * $limit;
 
 $sql = $db->prepare("SELECT Posts.Id,Posts.Id_topicu,post_Obsah FROM Posts 
@@ -49,7 +49,7 @@ term;
         $html .= <<<term
                             <label>
                              <textarea class="textarea" style="width: 50vw;" name="Obsah" rows="5" cols="40" maxlength="500"
-                                      id="obsah"
+                                      id="obsah$meno"
                                       placeholder="Content" required>$cont</textarea>
                         </label>
                                  <div class="forumCount">

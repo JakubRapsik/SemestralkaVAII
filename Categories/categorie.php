@@ -22,8 +22,7 @@ if (empty($data)) {
 <html lang="">
 <head>
     <link rel="stylesheet" type="text/css" href="../Styles.css"/>
-    <script type="text/javascript" charset="utf8"
-            src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
     <script src="/Scripts/ajax.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Category</title>
@@ -44,16 +43,9 @@ if (empty($data)) {
 
             </div>
         </div>
-        <?php
-        $user = $_SESSION['username'];
-        if (isset($_SESSION['username'])) {
-            echo '<div style="align-self: center">
-                        <button style="width: auto;" name="submit" value="Submit">
-                        <a href="../Topics/add-topic.php?category=' . $data . '">Add Topic</a>
-                        </button>
-                    </div>';
-        }
-        ?>
+        <div style="align-self: center">
+            <a style="font-size: 20px" href="../Topics/add-topic.php?category=' . $data . '">Add Topic</a>
+        </div>
     </div>
 
 
@@ -65,9 +57,8 @@ if (empty($data)) {
 
     <div class="design footer">Footer</div>
 
-</div>
-<script>
-    getTopic('<?php echo $data ?>', 1, 5);
-    getTopicPageCount('<?php echo $data ?>');
-</script>
+    <script>
+        getTopic('<?php echo $data ?>', 1, 5);
+        getTopicPageCount('<?php echo $data ?>');
+    </script>
 </body>

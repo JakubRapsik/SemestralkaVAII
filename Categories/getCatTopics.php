@@ -8,11 +8,13 @@ $category = $_POST["category"];
 $limit = $_POST['limit'];
 $start_from = ($page - 1) * $limit;
 
+$sql = "SELECT Id_categorie FROM Categories where Nazov = ?";
+$categ = getValuesFromDB($db, $sql, array($category => "s"), 1, false)[0];
+
+$sql = "SELECT * FROM Topics where Id_categorie = ?";
+$pocet = getValuesFromDB($db, $sql, array($categ => "i"), 1, true)[0];
 
 if ($category != "") {
-
-    $sql = "SELECT Id_categorie FROM Categories where Nazov = ?";
-    $categ = getValuesFromDB($db, $sql, array($category => "s"), 1, false)[0];
 
     $sql = $db->prepare("SELECT Id_topicu,Nazov,topic_Description FROM Topics where Id_categorie = ? LIMIT ?, ?");
     $sql->bind_param("iii", $categ, $start_from, $limit);
@@ -26,7 +28,6 @@ $sql->bind_result($idtopic, $nazov, $descr);
 
 $sql2 = "SELECT permisie FROM Users where meno = ?";
 $perm = getValuesFromDB($db, $sql2, array($autor => "s"), 1, false)[0];
-
 
 ?>
 <?php
@@ -69,13 +70,13 @@ term;
         if ($category != "") {
             $html .= <<<term
                 <div style="margin-left: 2.5vh;">
-                   <a onclick = 'deleteTopics("$category","$nazov",$page,"all")' style = "color: red; font-size: 15px" >Delete</a >
+                   <a onclick = 'deleteTopics("$category","$nazov",$page,"all",$pocet - 1)' style = "color: red; font-size: 15px" >Delete</a >
                 </div >
 term;
         } else {
             $html .= <<<term
                 <div style="margin-left: 2.5vh;">
-                   <a onclick = 'deleteTopics("$category","$nazov",$page,null)' style = "color: red; font-size: 15px" >Delete</a >
+                   <a onclick = 'deleteTopics("$category","$nazov",$page,null, $pocet - 1)' style = "color: red; font-size: 15px" >Delete</a >
                 </div >
 term;
         }
