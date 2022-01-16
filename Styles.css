@@ -239,8 +239,8 @@ meter[value="4"]::-webkit-meter-optimum-value {
     grid-row-gap: 0;
     grid-template-rows: 35px auto;
     grid-template-areas:
-            "topics"
-            "topictxt";
+        "topics"
+        "topictxt";
 }
 
 .main-grid-layout.box1Container {

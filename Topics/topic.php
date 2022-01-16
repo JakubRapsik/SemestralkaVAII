@@ -58,8 +58,6 @@ $edit = false;
 
     <?php include "../includes/sidebar.php"; ?>
 
-    <?php include "../includes/reklama.php"; ?>
-
     <div class="design footer">Footer</div>
 
 </div>
