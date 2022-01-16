@@ -42,6 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                     $error .= '<p>Your registration was successful!</p>';
                     $_SESSION['username'] = $name;
                     header("location: ../homePage.php");
+                    exit;
                 } else {
                     $error .= '<p>Something went wrong!</p>';
                 }

@@ -58,7 +58,7 @@ term;
     if ($autor == $meno || $perm > 0) {
         $html .= <<<term
                 <div style="margin-left: 2.5vh;">
-                    <a onclick = '' style = "font-size: 15px" >Edit</a >
+                    <a href="../Topics/edit-topic.php?topic=$row[2]" style = "font-size: 15px" >Edit</a >
                 </div>
 term;
         if ($category != "") {

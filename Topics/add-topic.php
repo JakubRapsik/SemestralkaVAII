@@ -48,6 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                 if ($vysledok) {
                     $error .= '<p>Category was added successfully</p>';
                     header("location: ../Categories/categorie.php?data=$category");
+                    exit;
                 } else {
                     $error .= '<p>Something went wrong!</p>';
                 }

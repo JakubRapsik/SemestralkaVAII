@@ -15,6 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
 
     if (empty($name) && empty($password) && empty($confirm_password)) {
         header("Location: ../User/userSettings.php");
+        exit;
     }
 
 

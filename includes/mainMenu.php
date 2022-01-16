@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+
 
 <div class="main-grid-layout header">
     <a href="/homePage.php" class="design head">Home</a>
