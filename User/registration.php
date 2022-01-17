@@ -27,6 +27,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
             if (strlen($email) > 100) {
                 $error .= '<p>Email address is too long</p>';
             }
+
+
             if (strlen($password) < 8) {
                 $error .= '<p>Password must have atleast 8 characters.</p>';
             }
