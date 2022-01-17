@@ -95,9 +95,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                         </div>
                         <div>
                             <label>
-                                <meter max="4" id="strength-meter"></meter>
-                                <div id="strength-text"></div>
+                                <meter value="0" max="4" id="strength-meter"></meter>
                             </label>
+                            <div id="strength-text"></div>
                         </div>
                         <script src="../Scripts/passwordStrength.js"></script>
                     </div>

@@ -18,9 +18,6 @@ $sql->bind_result($iduser, $idtopic, $cont, $idPost);
 $counter = 0;
 
 
-$sql2 = "SELECT * FROM Posts where Id_topicu = ?";
-$pocet = getValuesFromDB($db, $sql2, array($idtopic => "i"), 1, true)[0];
-
 $sql2 = "SELECT permisie FROM Users where meno = ?";
 $perm = getValuesFromDB($db, $sql2, array($autor => "s"), 1, false)[0];
 
@@ -28,6 +25,8 @@ while ($sql->fetch()) {
     if ($counter == 0) {
         $sql2 = "SELECT meno FROM Users where Id = ?";
         $meno = getValuesFromDB($db, $sql2, array($iduser => "i"), 1, false)[0];
+        $sql2 = "SELECT * FROM Posts where Id_topicu = ?";
+        $pocet = getValuesFromDB($db, $sql2, array($idtopic => "i"), 1, true)[0];
     }
     $counter++;
     $html = <<<term
