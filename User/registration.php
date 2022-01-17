@@ -1,8 +1,6 @@
 <?php
-
 global $error;
 global $vlozenieDB;
-
 require_once "../includes/config.php";
 session_start();
 
