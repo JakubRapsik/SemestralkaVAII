@@ -21,11 +21,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
         if ($poziadavka->num_rows > 0) {
             $error .= '<p>The email address is already registered!</p>';
         } else {
+            if (empty($email)) {
+                $error .= '<p>Please enter email.</p>';
+            }
+            if (strlen($email) > 100) {
+                $error .= '<p>Email address is too long</p>';
+            }
             if (strlen($password) < 8) {
                 $error .= '<p>Password must have atleast 8 characters.</p>';
             }
+            if (strlen($password) > 30) {
+                $error .= '<p>Password is too long</p>';
+            }
             if (strlen($name) < 6) {
                 $error .= '<p>Name must have atleast 6 characters.</p>';
+            }
+            if (strlen($name > 75)) {
+                $error .= '<p> Name can have maximum of 75 characters</p>';
             }
             if (empty($confirm_password)) {
                 $error .= '<p>Please enter confirm password.</p>';

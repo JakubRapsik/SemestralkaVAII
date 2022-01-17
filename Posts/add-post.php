@@ -12,6 +12,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     if (empty($cont)) {
         $error .= '<p>Content must have at least 1 character.</p>';
     }
+    if (strlen($cont) > 500) {
+        $error .= '<p>Content must have maximum of 500 characters.</p>';
+    }
 
     if (empty($error)) {
         $sql = "SELECT Id FROM Users where meno = ?";

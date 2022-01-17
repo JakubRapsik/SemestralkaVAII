@@ -38,12 +38,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
         if (strlen($name) < 1) {
             $error .= '<p>Name must have at least 1 character.</p>';
         }
+        if (strlen($name) > 50) {
+            $error .= '<p>Name must have maxumum of 50 characters.</p>';
+        }
         if (strlen($descrNew) < 1) {
             $error .= '<p>description must have at least 1 character.</p>';
+        }
+        if (strlen($descrNew) > 255) {
+            $error .= '<p>description must have maximum of 255 characters.</p>';
         }
         if (strlen($contNew) < 1) {
             $error .= '<p>Content must have at least 1 character.</p>';
         }
+        if (strlen($contNew) > 500) {
+            $error .= '<p>Content must have maximum of 500 characters.</p>';
+        }
+
 
         if (empty($error)) {
             $sql = "SELECT Categories.Nazov FROM Categories join Topics T on Categories.Id_categorie = T.Id_categorie where T.Nazov = ?";

@@ -21,6 +21,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
             if (empty($descr)) {
                 $error .= '<p>Please enter your description.</p>';
             }
+            if (strlen($descr) > 255) {
+                $error .= '<p>description must have at maximum of 255 characters.</p>';
+            }
+            if (strlen($name) > 50) {
+                $error .= '<p>Name must have at maximum of 50 characters.</p>';
+            }
             if (empty($error)) {
                 $sql = "SELECT max(Id_categorie) FROM Categories";
                 $maxid = getValuesFromDB($db, $sql, null, 1, false)[0];

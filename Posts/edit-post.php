@@ -25,6 +25,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     if (strlen($contNew) < 1) {
         $error .= '<p>Content must have at least 1 character.</p>';
     }
+    if (strlen($contNew) > 500) {
+        $error .= '<p>Content must have maximum of 500 characters.</p>';
+    }
     if (empty($error)) {
         $sql = "UPDATE Posts set post_Obsah = ? where Id_postu = ?";
         updateData($db, $sql, array($contNew, $postid), "si");

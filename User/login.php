@@ -11,9 +11,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     if (empty($email)) {
         $error .= '<p>Please enter email.</p>';
     }
-
+    if (strlen($email) > 100) {
+        $error .= '<p>Email address is too long</p>';
+    }
     if (empty($password)) {
         $error .= '<p>Please enter your password.</p>';
+    }
+    if (strlen($password) > 30) {
+        $error .= '<p>Password is too long</p>';
     }
 
     if (empty($error)) {
@@ -100,7 +105,6 @@ mysqli_close($db);
 
     <!--Reklamy-->
     <?php include "../includes/reklama.php"; ?>
-
 
 
     <div class="design footer">Footer</div>

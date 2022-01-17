@@ -23,8 +23,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     if (!empty($name)) {
         if (strlen($name) < 6) {
             $error .= '<p> Name must have atleast 6 characters.</p>';
+        } else if (strlen($name > 75)) {
+            $error .= '<p> Name can have maximum of 75 characters</p>';
         } else {
-
             $sql = "UPDATE Users set meno = ? where email = ?";
             updateData($db, $sql, array($name, $email), "ss");
             $_SESSION['username'] = $name;
@@ -36,6 +37,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
 
         if (strlen($password) < 8) {
             $error .= '<p>Password must have atleast 8 characters.</p>';
+        } else if (strlen($password) > 30) {
+            $error .= '<p>Password is too long</p>';
         } else {
             if ($password == $confirm_password) {
 
